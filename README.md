@@ -6,7 +6,7 @@ This is a ReactLynx project bootstrapped with `create-rspeedy`.
 check link in discord to have a testing server on your phone.
 
 ## Getting Started
-
+Be sure to have NodeJs,
 First, install the dependencies:
 
 ```bash
