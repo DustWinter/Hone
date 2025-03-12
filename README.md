@@ -3,19 +3,20 @@ We changing framework to Lynx to learn how to adapt with new frameworks, this is
 ## Rspeedy project
 
 This is a ReactLynx project bootstrapped with `create-rspeedy`.
+check link in discord to have a testing server on your phone.
 
 ## Getting Started
 
 First, install the dependencies:
 
 ```bash
-pnpm install
+npm install
 ```
 
 Then, run the development server:
 
 ```bash
-pnpm run dev
+npm run dev
 ```
 
 Scan the QRCode in the terminal with your LynxExplorer App to see the result.
