@@ -1,3 +1,5 @@
+We changing framework to Lynx to learn how to adapt with new frameworks, this is a framework made by TikTok and from the charts it is believed to be the dominant in market. (performance and such)
+
 ## Rspeedy project
 
 This is a ReactLynx project bootstrapped with `create-rspeedy`.
