@@ -1,0 +1,92 @@
+@startuml
+title Diagramme de Classes Préliminaire - Module Enseignant
+
+'-----------------------------
+' RG & RO Comments:
+' RG1: Each teacher has a unique id (idEnseignant).
+' RG2: Qualification info is stored (grade, specialite) for validation.
+' RG3: Disponibilites attribute supports load management.
+' RG4: ModifierInfos() ensures controlled updates.
+' RG5: Confidential data managed via inheritance from Utilisateur.
+' RG6: Association with EmploiDuTemps allows synchronization.
+' RG7: Projet class is included for tracking research projects and activities.
+'
+' RO1: The module is modular with minimal dependencies.
+' RO2: Clear interfaces for exchanging data with other modules.
+' RO3: UML standards are respected.
+' RO4: Access security is managed via the abstract Utilisateur.
+' RO5: Design supports extensibility (e.g., adding more operations).
+' RO6: The design is documented and intended for iterative refinement.
+'-----------------------------
+
+' Abstract class for common user attributes and security functions
+abstract class Utilisateur {
+    - idUtilisateur : int
+    - login : string
+    - motDePasse : string
+    - role : string
+    + authentifier() : bool
+}
+
+' The main Enseignant class extending Utilisateur
+class Enseignant {
+    - idEnseignant : int         ' RG1: Unique identification
+    - nom : string
+    - prenom : string
+    - email : string
+    - telephone : string
+    - grade : string             ' RG2: Validation des qualifications
+    - specialite : string        ' RG2: Qualification (specialité)
+    - dateEmbauche : Date
+    - disponibilites : string    ' RG3: Gestion de la charge horaire
+    + ajouterCours(c : Cours)
+    + modifierInfos(nom:string, prenom:string, email:string, telephone:string, grade:string, specialite:string)
+    + consulterDisponibilites() : string
+    + consulterSalle() : string              ' Operation to consult room availability
+    + informerEtudiantsExamens() : void      ' Operation to notify students about exams
+    + preparerExamens() : void               ' Operation to prepare exam materials
+    + affecterProjet(p : Projet) : void       ' RG7: Suivi des projets et activités
+}
+
+' Inheritance: Enseignant is a type of Utilisateur
+Utilisateur <|-- Enseignant
+
+' Class representing courses taught by teachers
+class Cours {
+    - idCours : int
+    - nomCours : string
+    - horaire : string
+    - salle : string
+    + assignerEnseignant(e : Enseignant) : void
+    + modifierHoraire(nouvelHoraire : string) : void
+}
+
+' Class representing the timetable, to synchronize teacher availability
+class EmploiDuTemps {
+    - idEmploi : int
+    - date : Date
+    - heureDebut : Time
+    - heureFin : Time
+    + consulterDisponibilites() : string
+}
+
+' Class for projects and research activities (RG7)
+class Projet {
+    - idProjet : int
+    - nomProjet : string
+    - description : string
+    + ajouterParticipant(u : Utilisateur) : void
+    + retirerParticipant(u : Utilisateur) : void
+}
+
+' Associations:
+' An Enseignant can teach multiple courses.
+Enseignant "1" -- "0..*" Cours : "enseigne"
+' An Enseignant's availability is linked to a timetable.
+Enseignant "1" -- "0..*" EmploiDuTemps : "a disponibilité dans"
+' An Enseignant may be involved in several projects.
+Enseignant "1" -- "0..*" Projet : "affecté à"
+' A course is assigned to one teacher.
+Cours "0..*" -- "1" Enseignant : "assigné à"
+
+@enduml
