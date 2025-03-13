@@ -19,6 +19,10 @@ class Enseignant {
     - disponibilites : string
     + enseignerCours()
     + consulterPlanning()
+    + AffecterProjet()
+    + consulterSalle()
+    + informerEtudiantsExamens()
+    + preparerExamens()
 }
 
 class Etudiant {
@@ -27,6 +31,7 @@ class Etudiant {
     - programme : string
     + consulterCours()
     + inscrireCours()
+    + effectuerAssignment()
 }
 
 class Administration {
@@ -36,9 +41,15 @@ class Administration {
     + validerModification()
 }
 
+' New class to represent researchers who interact with labs
+class Chercheur {
+    - domaineRecherche : string
+    + menerRecherche()
+    + publierResultats()
+}
+
 ' Classes for other modules
 class Labo {
-    - id : int
     - nom : string
     - localisation : string
     - equipements : string
@@ -59,9 +70,10 @@ class Service {
 Utilisateur <|-- Enseignant
 Utilisateur <|-- Etudiant
 Utilisateur <|-- Administration
+Utilisateur <|-- Chercheur
 
 ' Associations between modules
-Enseignant --> Service : "interagit avec"
+Chercheur --> Labo : "travaille dans (1..*)"
 Etudiant --> Service : "fait appel à"
 Administration --> Enseignant : "supervise"
 Administration --> Etudiant : "supervise"
