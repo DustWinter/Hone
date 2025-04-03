@@ -1,0 +1,58 @@
+/* Footer styles based on FSTT's official website */
+.fstt-footer {
+  background-color: #00519b; /* Primary FST blue */
+  color: #fff;
+  padding: 30px 0;
+  margin-top: auto;
+}
+
+.fstt-footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.fstt-footer-logo img {
+  max-height: 60px;
+  filter: brightness(0) invert(1); /* Make logo white */
+}
+
+.fstt-footer-info,
+.fstt-footer-contact {
+  line-height: 1.6;
+}
+
+.fstt-footer-info p,
+.fstt-footer-contact p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fstt-footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .fstt-footer-logo,
+  .fstt-footer-info,
+  .fstt-footer-contact {
+    margin-bottom: 20px;
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] .fstt-footer-content {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 768px) {
+  [dir="rtl"] .fstt-footer-content {
+    flex-direction: column;
+  }
+}

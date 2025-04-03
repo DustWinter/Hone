@@ -1,0 +1,101 @@
+/* Sidebar styles based on FSTT's official website */
+.fstt-sidebar {
+  width: 250px;
+  background-color: #00407e; /* Darker blue for sidebar */
+  color: #fff;
+  position: fixed;
+  height: 100%;
+  left: -250px;
+  top: 0;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
+  padding-top: 60px; /* Space for the header */
+  box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.fstt-sidebar.open {
+  left: 0;
+}
+
+.fstt-sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fstt-sidebar-header h3 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+}
+
+.fstt-sidebar-header p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.fstt-role {
+  font-size: 0.8rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 3px 8px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.fstt-sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fstt-sidebar-nav li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fstt-sidebar-nav a {
+  display: block;
+  padding: 15px 20px;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  font-size: 0.95rem;
+}
+
+.fstt-sidebar-nav a:hover,
+.fstt-sidebar-nav a.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left: 4px solid #ffcc00; /* FST accent color */
+  padding-left: 16px; /* Adjust for the border */
+}
+
+.fstt-sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+}
+
+.fstt-department-info p {
+  margin: 8px 0;
+  line-height: 1.4;
+}
+
+/* RTL Support */
+[dir="rtl"] .fstt-sidebar {
+  left: auto;
+  right: -250px;
+  transition: right 0.3s ease;
+}
+
+[dir="rtl"] .fstt-sidebar.open {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .fstt-sidebar-nav a:hover,
+[dir="rtl"] .fstt-sidebar-nav a.active {
+  border-left: none;
+  border-right: 4px solid #ffcc00;
+  padding-left: 20px;
+  padding-right: 16px;
+}

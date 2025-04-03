@@ -1,0 +1,72 @@
+/* Students page styles - similar to Courses.css but can be customized */
+.fstt-students {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.fstt-students h1 {
+  color: #00519b;
+  margin-bottom: 20px;
+}
+
+.fstt-students-list {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.fstt-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.fstt-table th, .fstt-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.fstt-table th {
+  background-color: #f5f5f5;
+  color: #333;
+  font-weight: 500;
+}
+
+.fstt-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.fstt-btn {
+  background-color: #00519b;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.fstt-btn:hover {
+  background-color: #003d73;
+}
+
+.fstt-empty {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+  font-style: italic;
+}
+
+.fstt-loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+/* RTL support */
+[dir="rtl"] .fstt-table th, 
+[dir="rtl"] .fstt-table td {
+  text-align: right;
+}
