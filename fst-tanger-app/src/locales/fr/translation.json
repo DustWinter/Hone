@@ -1,0 +1,123 @@
+{
+  "app": {
+    "title": "Gestion de Département Génie Informatique",
+    "subtitle": "Faculté des Sciences et Techniques de Tanger"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "home": "Accueil",
+    "courses": "Cours",
+    "students": "Étudiants",
+    "teachers": "Enseignants",
+    "rooms": "Salles",
+    "incidents": "Incidents",
+    "schedule": "Emploi du temps",
+    "deliberations": "Délibérations",
+    "internships": "Stages",
+    "admin": "Administration",
+    "profile": "Profil",
+    "logout": "Déconnexion",
+    "login": "Connexion",
+    "resources": "Ressources"
+  },
+  "auth": {
+    "login": "Connexion",
+    "email": "Email",
+    "password": "Mot de passe",
+    "loginButton": "Se connecter",
+    "forgotPassword": "Mot de passe oublié?",
+    "loginError": "Identifiants incorrects"
+  },
+  "department": {
+    "title": "GÉNIE INFORMATIQUE",
+    "chief": "Chef de département",
+    "contact": "Contact",
+    "programs": "Formations"
+  },
+  "courses": {
+    "title": "Gestion des Cours",
+    "code": "Code",
+    "name": "Titre",
+    "semester": "Semestre",
+    "year": "Année",
+    "addChapter": "Ajouter un chapitre",
+    "chapters": "Chapitres",
+    "sessions": "Séances",
+    "evaluations": "Évaluations",
+    "teachers": "Enseignants",
+    "assign": "Affecter",
+    "credits": "Crédits",
+    "actions": "Actions"
+  },
+  "students": {
+    "title": "Gestion des Étudiants",
+    "id": "ID",
+    "name": "Nom",
+    "program": "Programme",
+    "level": "Niveau",
+    "actions": "Actions"
+  },
+  "resources": {
+    "title": "Gestion des Ressources",
+    "rooms": "Salles",
+    "roomName": "Nom de la salle",
+    "capacity": "Capacité",
+    "availability": "Disponibilité",
+    "reservations": "Réservations",
+    "requestReservation": "Demander une réservation",
+    "incidents": "Incidents",
+    "reportIncident": "Signaler un incident",
+    "materials": "Matériels",
+    "type": "Type",
+    "status": "Statut",
+    "id": "ID",
+    "actions": "Actions"
+  },
+  "incidents": {
+    "title": "Gestion des Incidents",
+    "description": "Description",
+    "submissionDate": "Date de soumission",
+    "status": "Statut",
+    "priority": "Priorité",
+    "reporter": "Rapporteur",
+    "technician": "Technicien",
+    "resolution": "Résolution",
+    "highPriority": "Haute",
+    "mediumPriority": "Moyenne",
+    "lowPriority": "Basse",
+    "statusPending": "En attente",
+    "statusAssigned": "Assigné",
+    "statusInProgress": "En cours",
+    "statusResolved": "Résolu",
+    "statusClosed": "Clôturé"
+  },
+  "deliberations": {
+    "title": "Délibérations",
+    "date": "Date",
+    "status": "Statut",
+    "decisions": "Décisions",
+    "nv": "Non Validé",
+    "validate": "Valider",
+    "reject": "Rejeter"
+  },
+  "common": {
+    "add": "Ajouter",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "yes": "Oui",
+    "no": "Non",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "back": "Retour",
+    "next": "Suivant",
+    "submit": "Soumettre",
+    "details": "Détails",
+    "view": "Voir",
+    "unknown": "Inconnu"
+  }
+}

@@ -1,0 +1,54 @@
+/* Layout component styles */
+.fstt-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  background-color: #f5f5f5;
+  position: relative;
+  padding-top: 0; /* Ensure no top padding pushes content down */
+  margin-top: 0; /* Ensure no top margin */
+}
+
+.fstt-main-content {
+  flex: 1;
+  padding: 20px;
+  margin-top: 60px; /* Header height */
+  overflow-y: auto;
+  width: 100%;
+  position: relative;
+}
+
+.fstt-content {
+  flex: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.fstt-content.sidebar-open {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fstt-content.sidebar-open {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] .fstt-content.sidebar-open {
+  margin-left: 0;
+  margin-right: 250px;
+}
+
+@media (max-width: 768px) {
+  [dir="rtl"] .fstt-content.sidebar-open {
+    margin-right: 0;
+  }
+}

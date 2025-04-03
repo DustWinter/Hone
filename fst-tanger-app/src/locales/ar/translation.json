@@ -1,0 +1,118 @@
+{
+  "app": {
+    "title": "إدارة قسم هندسة المعلوميات",
+    "subtitle": "كلية العلوم والتقنيات طنجة"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "courses": "المقررات",
+    "students": "الطلاب",
+    "teachers": "الأساتذة",
+    "rooms": "القاعات",
+    "incidents": "الحوادث التقنية",
+    "schedule": "جدول الأعمال",
+    "deliberations": "المداولات",
+    "internships": "التدريب",
+    "admin": "الإدارة",
+    "profile": "الملف الشخصي",
+    "logout": "تسجيل الخروج",
+    "login": "تسجيل الدخول"
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "loginButton": "دخول",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "loginError": "بيانات الاعتماد غير صحيحة"
+  },
+  "department": {
+    "title": "هندسة المعلوميات",
+    "chief": "رئيس القسم",
+    "contact": "جهة الاتصال",
+    "programs": "البرامج"
+  },
+  "courses": {
+    "title": "إدارة المقررات",
+    "code": "الرمز",
+    "name": "العنوان",
+    "semester": "الفصل الدراسي",
+    "year": "السنة",
+    "addChapter": "إضافة فصل",
+    "chapters": "الفصول",
+    "sessions": "الحصص",
+    "evaluations": "التقييمات",
+    "teachers": "الأساتذة",
+    "assign": "تعيين"
+  },
+  "students": {
+    "title": "إدارة الطلاب",
+    "appogee": "رقم أبوجي",
+    "name": "الاسم",
+    "firstname": "الاسم الأول",
+    "birthdate": "تاريخ الميلاد",
+    "address": "العنوان",
+    "email": "البريد الإلكتروني",
+    "registration": "التسجيل",
+    "absences": "الغيابات",
+    "grades": "الدرجات",
+    "internships": "التدريب"
+  },
+  "resources": {
+    "title": "إدارة الموارد",
+    "rooms": "القاعات",
+    "roomName": "اسم القاعة",
+    "capacity": "السعة",
+    "availability": "التوفر",
+    "reservations": "الحجوزات",
+    "requestReservation": "طلب حجز",
+    "incidents": "الحوادث",
+    "reportIncident": "الإبلاغ عن حادث",
+    "materials": "المعدات"
+  },
+  "incidents": {
+    "title": "إدارة الحوادث",
+    "description": "الوصف",
+    "submissionDate": "تاريخ التقديم",
+    "status": "الحالة",
+    "priority": "الأولوية",
+    "reporter": "المبلغ",
+    "technician": "التقني",
+    "resolution": "الحل",
+    "highPriority": "عالية",
+    "mediumPriority": "متوسطة",
+    "lowPriority": "منخفضة",
+    "statusPending": "قيد الانتظار",
+    "statusAssigned": "تم التعيين",
+    "statusInProgress": "قيد التنفيذ",
+    "statusResolved": "تم الحل",
+    "statusClosed": "مغلق"
+  },
+  "deliberations": {
+    "title": "المداولات",
+    "date": "التاريخ",
+    "status": "الحالة",
+    "decisions": "القرارات",
+    "nv": "غير مصادق عليه",
+    "validate": "مصادقة",
+    "reject": "رفض"
+  },
+  "common": {
+    "add": "إضافة",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "search": "بحث",
+    "filter": "تصفية",
+    "yes": "نعم",
+    "no": "لا",
+    "loading": "جار التحميل...",
+    "error": "خطأ",
+    "success": "نجاح",
+    "back": "رجوع",
+    "next": "التالي",
+    "submit": "إرسال",
+    "details": "تفاصيل"
+  }
+}

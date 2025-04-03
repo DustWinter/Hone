@@ -1,0 +1,52 @@
+/* NotFound page styles */
+.fstt-not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  text-align: center;
+  padding: 20px;
+}
+
+.fstt-not-found-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.fstt-not-found h1 {
+  font-size: 6rem;
+  margin: 0;
+  color: #00519b;
+  line-height: 1;
+}
+
+.fstt-not-found h2 {
+  font-size: 2rem;
+  margin: 10px 0;
+  color: #333;
+}
+
+.fstt-not-found p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.fstt-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #00519b;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.fstt-btn:hover {
+  background-color: #003d73;
+}
+
+/* RTL support */
+[dir="rtl"] .fstt-not-found {
+  direction: rtl;
+}
