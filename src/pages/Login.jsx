@@ -88,7 +88,7 @@ const Login = () => {
         
         <form onSubmit={handleSubmit} className="fstt-login-form">
           <div className="fstt-login-field">
-            <label htmlFor="email">{t('auth.email')}</label>
+            <label htmlFor="email ns">{t('auth.email')}</label>
             <input
               type="email"
               id="email"
@@ -99,7 +99,7 @@ const Login = () => {
             />
           </div>
           
-          <div className="fstt-login-field">
+          <div className="fstt-login-field ns">
             <label htmlFor="password">{t('auth.password')}</label>
             <input
               type="password"
@@ -114,20 +114,20 @@ const Login = () => {
           </div>
           
           {errorMessage && (
-            <div className="fstt-login-error">
+            <div className="fstt-login-error ns">
               {errorMessage}
             </div>
           )}
           
           <button 
             type="submit" 
-            className="fstt-login-button" 
+            className="fstt-login-button ns" 
             disabled={loading}
           >
             {loading ? t('common.loading') : t('auth.loginButton')}
           </button>
           
-          <div className="fstt-login-examples">
+          <div className="fstt-login-examples ns">
             <button
               type="button"
               className="fstt-login-examples-toggle"
@@ -137,7 +137,7 @@ const Login = () => {
             </button>
             
             {showExamples && (
-              <div className="fstt-login-examples-list">
+              <div className="fstt-login-examples-list ns">
                 <p>{t('auth.clickEmailInstructions')}</p>
                 <ul>
                   {exampleEmails.map((exampleEmail, index) => (
@@ -156,7 +156,7 @@ const Login = () => {
           </div>
         </form>
         
-        <div className="fstt-login-footer">
+        <div className="fstt-login-footer ns">
           <p>Faculté des Sciences et Techniques de Tanger &copy; {new Date().getFullYear()}</p>
         </div>
       </div>

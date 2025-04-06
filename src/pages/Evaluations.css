@@ -15,6 +15,12 @@
   justify-content: space-between;
   align-items: center;
 }
+.ns {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
 
 .fstt-course-selector {
   display: flex;

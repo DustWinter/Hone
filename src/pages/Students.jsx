@@ -82,7 +82,7 @@ const Students = () => {
   }
 
   return (
-    <div className="fstt-students">
+    <div className="fstt-students ns">
       <h1>{t('students.title')}</h1>
       
       <div className="fstt-students-controls">

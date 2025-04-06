@@ -151,7 +151,7 @@ const Dashboard = () => {
     // Teacher-specific content
     if (hasRole(ROLES.ENSEIGNANT)) {
       return (
-        <div className="fstt-dashboard-role-content">
+        <div className="fstt-dashboard-role-content ns">
           <div className="fstt-dashboard-card">
             <h3>{t('courses.title')}</h3>
             {userSpecificData.coursAssigned.length > 0 ? (
@@ -189,7 +189,7 @@ const Dashboard = () => {
     // Student-specific content
     if (hasRole(ROLES.ETUDIANT)) {
       return (
-        <div className="fstt-dashboard-role-content">
+        <div className="fstt-dashboard-role-content ns">
           <div className="fstt-dashboard-card">
             <h3>{t('students.grades')}</h3>
             {userSpecificData.recentNotes.length > 0 ? (
@@ -230,7 +230,7 @@ const Dashboard = () => {
     // Technician-specific content
     if (hasRole(ROLES.TECHNICIEN)) {
       return (
-        <div className="fstt-dashboard-role-content">
+        <div className="fstt-dashboard-role-content ns">
           <div className="fstt-dashboard-card">
             <h3>{t('incidents.title')}</h3>
             {userSpecificData.pendingIncidents.length > 0 ? (
@@ -261,7 +261,7 @@ const Dashboard = () => {
     // Admin-specific content
     if (hasRole(ROLES.CHEF_DEPARTEMENT) || hasRole(ROLES.COORDINATEUR)) {
       return (
-        <div className="fstt-dashboard-role-content">
+        <div className="fstt-dashboard-role-content ns">
           <div className="fstt-dashboard-card">
             <h3>Administration</h3>
             <p>Bienvenue dans le panneau d'administration du département.</p>
@@ -281,15 +281,15 @@ const Dashboard = () => {
   if (!currentUser) return <div>{t('common.loading')}</div>;
   
   return (
-    <div className="fstt-dashboard">
+    <div className="fstt-dashboard ns">
       <h1>{t('nav.dashboard')}</h1>
       
-      <div className="fstt-dashboard-welcome">
+      <div className="fstt-dashboard-welcome ns">
         <h2>{t('dashboard.welcome', { name: currentUser.nom })}</h2>
         <p>{t('dashboard.role')}: {currentUser.role}</p>
       </div>
       
-      <div className="fstt-dashboard-stats">
+      <div className="fstt-dashboard-stats ns">
         <div className="fstt-stat-card">
           <h3>{stats.cours}</h3>
           <p>{t('nav.courses')}</p>

@@ -85,11 +85,11 @@ const Courses = () => {
   });
   
   if (loading) {
-    return <div className="fstt-loading">{t('common.loading')}</div>;
+    return <div className="fstt-loading ns">{t('common.loading')}</div>;
   }
   
   return (
-    <div className="fstt-courses">
+    <div className="fstt-courses ns">
       <h1>{t('courses.title')}</h1>
       
       <div className="fstt-courses-controls">

@@ -63,7 +63,7 @@ const Incidents = () => {
   }
 
   return (
-    <div className="fstt-incidents">
+    <div className="fstt-incidents ns">
       <h1>{t('incidents.title')}</h1>
       
       <div className="fstt-incidents-controls">

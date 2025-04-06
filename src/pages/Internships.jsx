@@ -427,7 +427,7 @@ const Internships = () => {
   
   // Render internship list
   const renderInternshipList = () => (
-    <div className="fstt-internships-list">
+    <div className="fstt-internships-list ns">
       <div className="fstt-internships-controls">
         <div className="fstt-search">
           <input

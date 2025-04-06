@@ -96,7 +96,7 @@ const Settings = () => {
   };
 
   return (
-    <div className="fstt-settings">
+    <div className="fstt-settings ns">
       <h1>{t('nav.settings')}</h1>
       
       <div className="fstt-settings-container">

@@ -45,11 +45,11 @@ const Resources = () => {
   });
 
   if (loading) {
-    return <div className="fstt-loading">{t('common.loading')}</div>;
+    return <div className="fstt-loading ns">{t('common.loading')}</div>;
   }
 
   return (
-    <div className="fstt-resources">
+    <div className="fstt-resources ns">
       <h1>{t('resources.title')}</h1>
       
       <div className="fstt-resources-controls">

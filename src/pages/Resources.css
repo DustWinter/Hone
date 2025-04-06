@@ -25,7 +25,12 @@
   align-items: center;
   gap: 0.5rem;
 }
-
+.ns {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
 .fstt-filter label {
   color: var(--text-secondary);
   font-weight: 500;

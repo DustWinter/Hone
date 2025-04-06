@@ -332,7 +332,7 @@ const Users = () => {
   // Add User Modal
   const addUserModal = (
     <div className={`fstt-modal ${showAddModal ? 'show' : ''}`}>
-      <div className="fstt-modal-content">
+      <div className="fstt-modal-content ns">
         <div className="fstt-modal-header">
           <h3>{t('users.addUser')}</h3>
           <button className="fstt-modal-close" onClick={() => setShowAddModal(false)}>&times;</button>
@@ -420,7 +420,7 @@ const Users = () => {
   // Edit User Modal
   const editUserModal = (
     <div className={`fstt-modal ${showEditModal ? 'show' : ''}`}>
-      <div className="fstt-modal-content">
+      <div className="fstt-modal-content ns">
         <div className="fstt-modal-header">
           <h3>{t('users.editUser')}</h3>
           <button className="fstt-modal-close" onClick={() => setShowEditModal(false)}>&times;</button>
@@ -480,7 +480,7 @@ const Users = () => {
   // Delete User Modal
   const deleteUserModal = (
     <div className={`fstt-modal ${showDeleteModal ? 'show' : ''}`}>
-      <div className="fstt-modal-content">
+      <div className="fstt-modal-content ns">
         <div className="fstt-modal-header">
           <h3>{t('users.deleteUser')}</h3>
           <button className="fstt-modal-close" onClick={() => setShowDeleteModal(false)}>&times;</button>
@@ -506,7 +506,7 @@ const Users = () => {
       !hasRole(ROLES.ADMIN) && 
       !hasRole(ROLES.COORDINATEUR)) {
     return (
-      <div className="fstt-admin-access-denied">
+      <div className="fstt-admin-access-denied ns">
         <h2>{t('common.accessDenied')}</h2>
         <p>{t('common.adminOnly')}</p>
       </div>
@@ -514,11 +514,11 @@ const Users = () => {
   }
 
   if (loading) {
-    return <div className="fstt-loading">{t('common.loading')}</div>;
+    return <div className="fstt-loading ns">{t('common.loading')}</div>;
   }
 
   return (
-    <div className="fstt-users">
+    <div className="fstt-users ns">
       <h1>{t('nav.users')}</h1>
       
       <div className="fstt-users-controls">

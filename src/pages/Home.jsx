@@ -17,7 +17,7 @@ const Home = () => {
   const departmentInfo = db.constructor.département;
   
   return (
-    <div className="fstt-home">
+    <div className="fstt-home ns">
       <section className="fstt-hero">
         <div className="fstt-hero-content">
           <h1>{t('department.title')}</h1>

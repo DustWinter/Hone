@@ -66,7 +66,7 @@ function App() {
   // Show loading while initializing database
   if (!dbInitialized) {
     return (
-      <div className="fstt-app-loading">
+      <div className="fstt-app-loading ns">
         <h2>{t('common.loading') || 'Chargement...'}</h2>
         <p>{t('common.initializing') || 'Initialisation de l\'application'}</p>
       </div>

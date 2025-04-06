@@ -153,7 +153,7 @@ const Profile = () => {
   // Not logged in
   if (!currentUser) {
     return (
-      <div className="fstt-profile-not-logged-in">
+      <div className="fstt-profile-not-logged-in ns">
         <h2>{t('profile.notLoggedIn')}</h2>
         <p>{t('profile.pleaseLogin')}</p>
       </div>
@@ -162,7 +162,7 @@ const Profile = () => {
   
   // Loading state
   if (loading) {
-    return <div className="fstt-loading">{t('common.loading')}</div>;
+    return <div className="fstt-loading ns">{t('common.loading')}</div>;
   }
 
   return (

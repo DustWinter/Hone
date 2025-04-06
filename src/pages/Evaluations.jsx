@@ -402,7 +402,7 @@ const Evaluations = () => {
     
     return (
       <div className={`fstt-modal ${showModal.studentDetails ? 'show' : ''}`}>
-        <div className="fstt-modal-content">
+        <div className="fstt-modal-content ns">
           <div className="fstt-modal-header">
             <h3>{selectedStudent.nom}</h3>
             <button className="fstt-modal-close" onClick={() => setShowModal({...showModal, studentDetails: false})}>×</button>
@@ -487,7 +487,7 @@ const Evaluations = () => {
   // New evaluation modal
   const NewEvaluationModal = () => (
     <div className={`fstt-modal ${showModal.newEvaluation ? 'show' : ''}`}>
-      <div className="fstt-modal-content">
+      <div className="fstt-modal-content ns">
         <div className="fstt-modal-header">
           <h3>{t('evaluations.newEvaluation')}</h3>
           <button className="fstt-modal-close" onClick={() => setShowModal({...showModal, newEvaluation: false})}>×</button>
@@ -565,7 +565,7 @@ const Evaluations = () => {
     
     return (
       <div className={`fstt-modal ${showModal.enterGrades ? 'show' : ''}`}>
-        <div className="fstt-modal-content">
+        <div className="fstt-modal-content ns">
           <div className="fstt-modal-header">
             <h3>{t('evaluations.enterGrades')} - {selectedEvaluation.type}</h3>
             <button className="fstt-modal-close" onClick={() => setShowModal({...showModal, enterGrades: false})}>×</button>
@@ -636,7 +636,7 @@ const Evaluations = () => {
   // Validate course modal for final deliberations
   const ValidateCourseModal = () => (
     <div className={`fstt-modal ${showModal.validateCourse ? 'show' : ''}`}>
-      <div className="fstt-modal-content">
+      <div className="fstt-modal-content ns">
         <div className="fstt-modal-header">
           <h3>{t('evaluations.validateCourseTitle')}</h3>
           <button className="fstt-modal-close" onClick={() => setShowModal({...showModal, validateCourse: false})}>×</button>
@@ -665,11 +665,11 @@ const Evaluations = () => {
   );
   
   if (loading && !courses.length) {
-    return <div className="fstt-loading">{t('common.loading')}</div>;
+    return <div className="fstt-loading ns">{t('common.loading')}</div>;
   }
   
   return (
-    <div className="fstt-evaluations">
+    <div className="fstt-evaluations ns">
       <h1>{t('evaluations.title')}</h1>
       
       <div className="fstt-evaluations-header">

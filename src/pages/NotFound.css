@@ -19,7 +19,12 @@
   color: #00519b;
   line-height: 1;
 }
-
+.ns {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
 .fstt-not-found h2 {
   font-size: 2rem;
   margin: 10px 0;

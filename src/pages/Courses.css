@@ -11,6 +11,13 @@
   color: var(--text-primary);
 }
 
+.ns {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
 .fstt-courses-controls {
   display: flex;
   justify-content: space-between;

@@ -18,6 +18,12 @@
   flex-wrap: wrap;
   gap: 15px;
 }
+.ns {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
 
 .fstt-search {
   flex-grow: 1;

@@ -10,7 +10,7 @@ const NotFound = () => {
   const { t } = useTranslation();
   
   return (
-    <div className="fstt-not-found">
+    <div className="fstt-not-found ns">
       <div className="fstt-not-found-content">
         <h1>404</h1>
         <h2>Page non trouvée</h2>

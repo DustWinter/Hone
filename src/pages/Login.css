@@ -15,7 +15,12 @@
   top: 1rem;
   right: 1rem;
 }
-
+.ns {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
 .fstt-login-lang-toggle {
   background: rgba(255, 255, 255, 0.2);
   color: white;

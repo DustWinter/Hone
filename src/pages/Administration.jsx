@@ -26,7 +26,7 @@ const Administration = () => {
   
   // Render user management tab
   const renderUsersTab = () => (
-    <div className="fstt-admin-tab-content">
+    <div className="fstt-admin-tab-content ns">
       <div className="fstt-admin-section">
         <h3>{t('admin.userManagement')}</h3>
         <p>{t('admin.userManagementDescription')}</p>
@@ -138,7 +138,7 @@ const Administration = () => {
   
   // Render reports tab
   const renderReportsTab = () => (
-    <div className="fstt-admin-tab-content">
+    <div className="fstt-admin-tab-content ns">
       <div className="fstt-admin-section">
         <h3>{t('admin.academicReports')}</h3>
         <p>{t('admin.reportsDescription')}</p>
@@ -177,7 +177,7 @@ const Administration = () => {
   
   // Render system configuration tab
   const renderConfigTab = () => (
-    <div className="fstt-admin-tab-content">
+    <div className="fstt-admin-tab-content ns">
       <div className="fstt-admin-section">
         <h3>{t('admin.systemConfiguration')}</h3>
         <p>{t('admin.configDescription')}</p>
@@ -243,7 +243,7 @@ const Administration = () => {
       !hasRole(ROLES.ADMIN) && 
       !hasRole(ROLES.COORDINATEUR)) {
     return (
-      <div className="fstt-admin-access-denied">
+      <div className="fstt-admin-access-denied ns">
         <h2>{t('common.accessDenied')}</h2>
         <p>{t('common.adminOnly')}</p>
       </div>
@@ -251,10 +251,10 @@ const Administration = () => {
   }
 
   return (
-    <div className="fstt-admin">
+    <div className="fstt-admin ns">
       <h1>{t('nav.admin')}</h1>
       
-      <div className="fstt-admin-welcome">
+      <div className="fstt-admin-welcome ns">
         <h2>{t('admin.welcomeTitle')}</h2>
         <p>{t('admin.welcomeMessage')}</p>
       </div>

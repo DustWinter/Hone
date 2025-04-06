@@ -21,7 +21,12 @@
   color: white;
   position: relative;
 }
-
+.ns {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
 .fstt-profile-avatar {
   width: 80px;
   height: 80px;

@@ -20,6 +20,13 @@
   gap: 1rem;
 }
 
+.ns {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
 .fstt-incidents-list {
   background-color: var(--card-bg);
   border-radius: 0.5rem;

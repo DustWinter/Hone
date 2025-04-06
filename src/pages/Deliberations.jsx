@@ -80,7 +80,7 @@ const Deliberations = () => {
   }
 
   return (
-    <div className="fstt-deliberations">
+    <div className="fstt-deliberations ns">
       <h1>{t('deliberations.title')}</h1>
       
       <div className="fstt-deliberations-controls">
