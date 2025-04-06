@@ -30,10 +30,14 @@ const Sidebar = ({ isOpen, closeSidebar }) => {
           <h2 className="fstt-app-name">{t('department.title')}</h2>
           <button 
             className="fstt-sidebar-close" 
-            onClick={closeSidebar}
+            onClick={() => {
+              console.log('Close button clicked');
+              closeSidebar();
+            }}
             aria-label="Close menu"
+            type="button"
           >
-            <Icons.X />
+            <img src="/assets/icons/menu.png" alt="Close" />
           </button>
         </div>
         
@@ -109,6 +113,26 @@ const Sidebar = ({ isOpen, closeSidebar }) => {
               {t('nav.incidents')}
               {hasRole(ROLES.TECHNICIEN) && <span className="fstt-nav-badge">3</span>}
             </NavLink>
+            
+            <NavLink 
+              to="/internships" 
+              className="fstt-nav-item" 
+              onClick={closeSidebar}
+            >
+              <span className="fstt-nav-icon"><Icons.Briefcase /></span>
+              {t('nav.internships')}
+            </NavLink>
+            
+            {(hasRole(ROLES.ENSEIGNANT) || hasRole(ROLES.CHEF_DEPARTEMENT) || hasRole(ROLES.COORDINATEUR)) && (
+              <NavLink 
+                to="/evaluations" 
+                className="fstt-nav-item" 
+                onClick={closeSidebar}
+              >
+                <span className="fstt-nav-icon"><Icons.CheckCircle /></span>
+                {t('evaluations.title')}
+              </NavLink>
+            )}
             
             {/* Admin-only sections */}
             {isAdmin && (

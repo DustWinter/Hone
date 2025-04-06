@@ -12,10 +12,12 @@ import Students from './pages/Students';
 import Resources from './pages/Resources';
 import Incidents from './pages/Incidents';
 import Deliberations from './pages/Deliberations';
+import Internships from './pages/Internships';
 import Administration from './pages/Administration';
 import Users from './pages/Users';
 import Settings from './pages/Settings';
 import Profile from './pages/Profile';
+import Evaluations from './pages/Evaluations';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import './App.css';
@@ -107,6 +109,16 @@ function App() {
               <Route path="deliberations" element={
                 <ProtectedRoute>
                   <Deliberations />
+                </ProtectedRoute>
+              } />
+              <Route path="internships" element={
+                <ProtectedRoute>
+                  <Internships />
+                </ProtectedRoute>
+              } />
+              <Route path="evaluations" element={
+                <ProtectedRoute>
+                  <Evaluations />
                 </ProtectedRoute>
               } />
               <Route path="administration" element={

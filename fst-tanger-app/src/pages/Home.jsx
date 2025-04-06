@@ -91,6 +91,15 @@ const Home = () => {
             <h3>{t('incidents.title')}</h3>
             <p>{t('home.incidentsDescription')}</p>
           </div>
+          
+          <div className="fstt-feature-card">
+            <div className="fstt-feature-icon">
+              <Icons.Features.Internships />
+            </div>
+            <h3>{t('internships.title')}</h3>
+            <p>{t('home.internshipsDescription')}</p>
+          </div>
+          
         </div>
       </section>
     </div>
