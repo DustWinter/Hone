@@ -1,0 +1,135 @@
+/* Deliberations page styles */
+.fstt-deliberations {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fstt-deliberations h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  color: var(--text-primary);
+}
+
+.fstt-deliberations-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.fstt-deliberations-list {
+  background-color: var(--card-bg);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  transition: all var(--transition-speed) ease;
+}
+
+.fstt-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.fstt-table th, .fstt-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.fstt-table th {
+  background-color: #f5f5f5;
+  color: #333;
+  font-weight: 500;
+}
+
+.fstt-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.fstt-btn {
+  background-color: #00519b;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.fstt-btn:hover {
+  background-color: #003d73;
+}
+
+.fstt-empty {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+  font-style: italic;
+}
+
+.fstt-loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+/* Result badges */
+.fstt-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.fstt-badge.result-admis {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.fstt-badge.result-ajourné {
+  background-color: #fff8e1;
+  color: #f57f17;
+}
+
+.fstt-badge.result-échoué {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.result-validé {
+  background-color: var(--badge-bg-success);
+  color: var(--badge-text-success);
+}
+
+.result-non-validé {
+  background-color: var(--badge-bg-danger);
+  color: var(--badge-text-danger);
+}
+
+/* RTL support */
+[dir="rtl"] .fstt-table th, 
+[dir="rtl"] .fstt-table td {
+  text-align: right;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fstt-deliberations-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .fstt-table-container {
+    overflow-x: auto;
+  }
+
+  .fstt-table {
+    min-width: 600px;
+  }
+}

@@ -1,0 +1,169 @@
+.fstt-users {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fstt-users h1 {
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.fstt-users-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.fstt-users-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.fstt-users-filters {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.fstt-users-search {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  min-width: 200px;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+.fstt-users-filter {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  min-width: 150px;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+.fstt-users-table {
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.fstt-users-actions-cell {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+/* Modal styles */
+.fstt-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.fstt-modal.show {
+  display: flex;
+}
+
+.fstt-modal-content {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+}
+
+.fstt-modal-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fstt-modal-header h3 {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.fstt-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.fstt-modal-body {
+  padding: 1.5rem;
+}
+
+.fstt-form-group {
+  margin-bottom: 1rem;
+}
+
+.fstt-form-group label {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.fstt-form-group input,
+.fstt-form-group select {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+.fstt-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .fstt-users-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .fstt-users-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .fstt-users-search, 
+  .fstt-users-filter {
+    width: 100%;
+  }
+  
+  .fstt-table-container {
+    overflow-x: auto;
+  }
+  
+  .fstt-table {
+    min-width: 700px;
+  }
+}

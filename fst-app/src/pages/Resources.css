@@ -1,0 +1,198 @@
+/* Resources page styles */
+.fstt-resources {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fstt-resources h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  color: var(--text-primary);
+}
+
+.fstt-resources-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.fstt-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.fstt-filter label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.fstt-filter select {
+  padding: 0.5rem;
+  border: 1px solid var(--input-border);
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+.fstt-resources-list {
+  background-color: var(--card-bg);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  transition: all var(--transition-speed) ease;
+}
+
+.fstt-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.fstt-table th, .fstt-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--table-border);
+  transition: border-color 0.3s ease;
+}
+
+.fstt-table th {
+  background-color: var(--table-header-bg);
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.fstt-table tr:hover {
+  background-color: var(--bg-tertiary);
+  transition: background-color 0.3s ease;
+}
+
+.fstt-btn {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.fstt-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+.fstt-empty {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 20px;
+  font-style: italic;
+  transition: color 0.3s ease;
+}
+
+.fstt-loading {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+/* Status badges */
+.fstt-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light mode badges */
+.fstt-badge.status-disponible {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+/* Dark mode badges */
+[data-theme="dark"] .fstt-badge.status-disponible {
+  background-color: rgba(46, 125, 50, 0.2);
+  color: #81c784;
+}
+
+.fstt-badge.status-occupé {
+  background-color: #fff8e1;
+  color: #f57f17;
+}
+
+[data-theme="dark"] .fstt-badge.status-occupé {
+  background-color: rgba(245, 127, 23, 0.2);
+  color: #ffb74d;
+}
+
+.fstt-badge.status-hors-service {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+[data-theme="dark"] .fstt-badge.status-hors-service {
+  background-color: rgba(198, 40, 40, 0.2);
+  color: #e57373;
+}
+
+/* Unknown status */
+.fstt-badge.status-unknown {
+  background-color: #f5f5f5;
+  color: #757575;
+}
+
+[data-theme="dark"] .fstt-badge.status-unknown {
+  background-color: rgba(117, 117, 117, 0.2);
+  color: #bdbdbd;
+}
+
+.status-available {
+  background-color: var(--badge-bg-success);
+  color: var(--badge-text-success);
+}
+
+.status-unavailable {
+  background-color: var(--badge-bg-danger);
+  color: var(--badge-text-danger);
+}
+
+/* RTL support */
+[dir="rtl"] .fstt-table th, 
+[dir="rtl"] .fstt-table td {
+  text-align: right;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fstt-resources-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .fstt-filter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .fstt-filter select {
+    width: 100%;
+  }
+
+  .fstt-table-container {
+    overflow-x: auto;
+  }
+
+  .fstt-table {
+    min-width: 600px;
+  }
+}

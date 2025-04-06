@@ -1,0 +1,130 @@
+/* Students page styles - similar to Courses.css but can be customized */
+.fstt-students {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fstt-students h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  color: var(--text-primary);
+}
+
+.fstt-students-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.fstt-search {
+  flex: 1;
+  max-width: 400px;
+}
+
+.fstt-search input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--input-border);
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+.fstt-search input::placeholder {
+  color: var(--input-placeholder);
+}
+
+.fstt-search input:focus {
+  outline: none;
+  border-color: var(--border-focus);
+}
+
+.fstt-students-list {
+  background-color: var(--card-bg);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  transition: all var(--transition-speed) ease;
+}
+
+.fstt-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.fstt-table th {
+  text-align: left;
+  padding: 1rem;
+  background-color: var(--table-header-bg);
+  color: var(--text-primary);
+  font-weight: 600;
+  border-bottom: 2px solid var(--table-border);
+}
+
+.fstt-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--table-border);
+  color: var(--text-primary);
+}
+
+.fstt-table tr:nth-child(even) {
+  background-color: var(--table-row-even);
+}
+
+.fstt-table tr:hover {
+  background-color: var(--table-row-hover);
+}
+
+.fstt-btn {
+  padding: 0.375rem 0.75rem;
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.fstt-empty {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fstt-students-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .fstt-search {
+    max-width: 100%;
+  }
+
+  .fstt-table-container {
+    overflow-x: auto;
+  }
+
+  .fstt-table {
+    min-width: 600px;
+  }
+
+  .fstt-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* RTL support */
+[dir="rtl"] .fstt-table th, 
+[dir="rtl"] .fstt-table td {
+  text-align: right;
+}

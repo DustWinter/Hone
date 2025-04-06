@@ -1,0 +1,117 @@
+/* Courses page styles */
+.fstt-courses {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fstt-courses h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  color: var(--text-primary);
+}
+
+.fstt-courses-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.fstt-courses-list {
+  margin-top: 1.5rem;
+}
+
+.fstt-courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.fstt-course-card {
+  background-color: var(--card-bg);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  transition: all var(--transition-speed) ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.fstt-course-card:hover {
+  box-shadow: var(--card-hover-shadow);
+  transform: translateY(-2px);
+}
+
+.fstt-course-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: var(--bg-tertiary);
+}
+
+.fstt-course-code {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.fstt-course-semester {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.fstt-course-title {
+  padding: 1rem;
+  font-size: 1.1rem;
+  margin: 0;
+  flex: 1;
+  color: var(--text-primary);
+}
+
+.fstt-course-footer {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+}
+
+.fstt-course-year {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* RTL support */
+[dir="rtl"] .fstt-table th, 
+[dir="rtl"] .fstt-table td {
+  text-align: right;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .fstt-courses-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .fstt-courses-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .fstt-courses-grid {
+    grid-template-columns: 1fr;
+  }
+}

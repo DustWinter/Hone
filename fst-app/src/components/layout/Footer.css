@@ -1,0 +1,192 @@
+/* Footer styles based on FSTT's official website */
+.fstt-footer {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  padding: 2rem 1.5rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.fstt-footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.fstt-footer-logo {
+  flex-basis: 100%;
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.fstt-footer-logo img {
+  max-width: 180px;
+  height: auto;
+}
+
+.fstt-footer-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.fstt-footer-column h3 {
+  color: var(--primary);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.fstt-footer-column h3:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--gradient-primary);
+  border-radius: 3px;
+}
+
+[dir="rtl"] .fstt-footer-column h3:after {
+  left: auto;
+  right: 0;
+}
+
+.fstt-footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fstt-footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.fstt-footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s, transform 0.2s;
+  display: block;
+  padding: 0.2rem 0;
+}
+
+.fstt-footer-links a:hover {
+  color: var(--primary);
+  transform: translateX(4px);
+}
+
+.fstt-footer-contact p {
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+}
+
+.fstt-footer-contact .fstt-icon {
+  margin-right: 0.75rem;
+  color: var(--primary);
+}
+
+[dir="rtl"] .fstt-footer-contact .fstt-icon {
+  margin-right: 0;
+  margin-left: 0.75rem;
+}
+
+.fstt-footer-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.fstt-footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(var(--primary-rgb), 0.1);
+  color: var(--primary);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.fstt-footer-social a:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.fstt-footer-social a:hover:before {
+  left: 0;
+}
+
+.fstt-footer-social a:hover {
+  background-color: var(--primary);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.fstt-footer-bottom {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Dark mode enhancements */
+[data-theme="dark"] .fstt-footer {
+  background-color: var(--bg-primary);
+  border-top-color: var(--border-color);
+}
+
+[data-theme="dark"] .fstt-footer-column h3 {
+  color: var(--primary);
+}
+
+[data-theme="dark"] .fstt-footer-links a {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .fstt-footer-links a:hover {
+  color: var(--primary);
+}
+
+[data-theme="dark"] .fstt-footer-social a {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--primary);
+}
+
+[data-theme="dark"] .fstt-footer-social a:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+[data-theme="dark"] .fstt-footer-bottom {
+  border-top-color: var(--border-color);
+}
+
+@media (max-width: 768px) {
+  .fstt-footer-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .fstt-footer-column {
+    flex-basis: 100%;
+  }
+}

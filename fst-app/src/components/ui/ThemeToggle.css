@@ -1,0 +1,55 @@
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.theme-toggle-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-primary);
+}
+
+.theme-toggle-button:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.theme-toggle-button.light {
+  background-color: var(--bg-tertiary);
+  color: #f39c12; /* Sunny yellow for light mode */
+}
+
+.theme-toggle-button.dark {
+  background-color: var(--bg-tertiary);
+  color: #f1c40f; /* Bright yellow for dark mode */
+}
+
+.theme-toggle-button svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2px;
+}
+
+/* Add pulse animation on click */
+.theme-toggle-button:active {
+  transform: scale(0.9);
+}
+
+/* Ensure that the button is always visible regardless of theme */
+[data-theme="dark"] .theme-toggle-button {
+  color: #f1c40f;
+}
+
+[data-theme="light"] .theme-toggle-button {
+  color: #f39c12;
+}
