@@ -16,7 +16,12 @@
   right: 20px;
   z-index: 10;
 }
-
+.ns {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+}
 .fstt-login-lang-toggle {
   padding: 8px 16px;
   background-color: rgba(0, 86, 179, 0.1);

@@ -72,7 +72,7 @@ const Login = () => {
   };
   
   return (
-    <div className="fstt-login-container">
+    <div className="fstt-login-container ns">
       <div className="fstt-login-language">
         <button onClick={toggleLanguage} className="fstt-login-lang-toggle">
           {i18n.language === 'fr' ? 'العربية' : 'Français'}
