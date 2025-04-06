@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
+import { Icons } from '../components/common/Icons';
 import db from '../utils/db';
 import './Home.css';
 
@@ -60,27 +61,35 @@ const Home = () => {
         
         <div className="fstt-features-grid">
           <div className="fstt-feature-card">
-            <div className="fstt-feature-icon courses-icon"></div>
+            <div className="fstt-feature-icon">
+              <Icons.Features.Courses />
+            </div>
             <h3>{t('courses.title')}</h3>
-            <p>Gestion des cours, chapitres, et séances</p>
+            <p>{t('home.coursesDescription')}</p>
           </div>
           
           <div className="fstt-feature-card">
-            <div className="fstt-feature-icon students-icon"></div>
+            <div className="fstt-feature-icon">
+              <Icons.Features.Students />
+            </div>
             <h3>{t('students.title')}</h3>
-            <p>Gestion des étudiants, inscriptions, et notes</p>
+            <p>{t('home.studentsDescription')}</p>
           </div>
           
           <div className="fstt-feature-card">
-            <div className="fstt-feature-icon resources-icon"></div>
+            <div className="fstt-feature-icon">
+              <Icons.Features.Resources />
+            </div>
             <h3>{t('resources.title')}</h3>
-            <p>Gestion des salles et réservations</p>
+            <p>{t('home.resourcesDescription')}</p>
           </div>
           
           <div className="fstt-feature-card">
-            <div className="fstt-feature-icon incidents-icon"></div>
+            <div className="fstt-feature-icon">
+              <Icons.Features.Incidents />
+            </div>
             <h3>{t('incidents.title')}</h3>
-            <p>Suivi des incidents techniques</p>
+            <p>{t('home.incidentsDescription')}</p>
           </div>
         </div>
       </section>

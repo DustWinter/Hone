@@ -1,14 +1,18 @@
 /* Home page styles based on FSTT's design system */
 .fstt-home {
-  width: 100%;
+  max-width: 100%;
+  padding-bottom: 2rem;
+  color: var(--text-primary);
 }
 
 /* Hero section */
 .fstt-hero {
-  background: linear-gradient(135deg, #00519b, #003366);
-  color: white;
-  padding: 60px 20px;
+  background: var(--hero-gradient);
+  padding: 4rem 1.5rem;
   text-align: center;
+  color: white;
+  margin-bottom: 3rem;
+  transition: background 0.3s ease;
 }
 
 .fstt-hero-content {
@@ -18,176 +22,145 @@
 
 .fstt-hero h1 {
   font-size: 2.5rem;
-  margin: 0;
-  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .fstt-subtitle {
-  font-size: 1.2rem;
-  margin: 15px 0 30px;
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
   opacity: 0.9;
 }
 
-.fstt-btn {
-  display: inline-block;
-  padding: 12px 25px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-
-.fstt-btn-primary {
-  background-color: #ffcc00; /* FST accent color */
-  color: #003366;
-}
-
-.fstt-btn-primary:hover {
-  background-color: #ffd633;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 /* Department section */
-.fstt-department-section {
-  padding: 60px 20px;
-  background-color: #f8f8f8;
+.fstt-department-section, 
+.fstt-features-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  margin-bottom: 3rem;
 }
 
-.fstt-department-section h2 {
+.fstt-department-section h2,
+.fstt-features-section h2 {
   text-align: center;
-  color: #00519b;
-  margin-top: 0;
-  margin-bottom: 40px;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
 }
 
 .fstt-department-card {
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  display: flex;
+  background-color: var(--card-bg);
+  border-radius: 0.5rem;
+  box-shadow: var(--card-shadow);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   overflow: hidden;
+  border: 1px solid var(--card-border);
+  transition: all var(--transition-speed) ease;
 }
 
 .fstt-department-info,
 .fstt-department-programs {
-  padding: 30px;
-  flex: 1;
+  padding: 1.5rem;
 }
 
 .fstt-department-info {
-  border-right: 1px solid #eee;
+  border-right: 1px solid var(--border-color);
 }
 
 .fstt-department-info h3,
 .fstt-department-programs h3 {
-  color: #00519b;
   margin-top: 0;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.fstt-department-info p {
+  margin: 0.5rem 0;
+  color: var(--text-secondary);
 }
 
 .fstt-department-info a {
-  color: #00519b;
+  color: var(--text-link);
   text-decoration: none;
 }
 
+.fstt-department-info a:hover {
+  text-decoration: underline;
+  color: var(--text-link-hover);
+}
+
 .fstt-department-programs ul {
-  padding-left: 20px;
+  padding-left: 1.25rem;
+  margin-bottom: 0;
 }
 
 .fstt-department-programs li {
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
 }
 
 /* Features section */
-.fstt-features-section {
-  padding: 60px 20px;
-}
-
-.fstt-features-section h2 {
-  text-align: center;
-  color: #00519b;
-  margin-top: 0;
-  margin-bottom: 40px;
-}
-
 .fstt-features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  max-width: 1100px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
 }
 
 .fstt-feature-card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
-  padding: 30px;
+  background-color: var(--feature-card-bg);
+  border-radius: 0.5rem;
+  box-shadow: var(--card-shadow);
+  padding: 1.5rem;
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid var(--feature-card-border);
+  transition: all var(--transition-speed) ease;
 }
 
 .fstt-feature-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-hover-shadow);
 }
 
 .fstt-feature-icon {
-  height: 60px;
-  width: 60px;
-  margin: 0 auto 20px;
-  background-color: #e3f2fd;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
   border-radius: 50%;
+  background-color: var(--feature-icon-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.fstt-feature-card h3 {
-  color: #00519b;
-  margin: 0 0 10px;
-  font-size: 1.3rem;
-}
-
-.fstt-feature-card p {
-  color: #666;
-  margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.5;
+  color: var(--accent-color);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .fstt-hero {
+    padding: 3rem 1rem;
+  }
+
+  .fstt-hero h1 {
+    font-size: 2rem;
+  }
+  
+  .fstt-subtitle {
+    font-size: 1.1rem;
+  }
+  
   .fstt-department-card {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
   
   .fstt-department-info {
     border-right: none;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
   }
   
-  .fstt-hero h1 {
-    font-size: 2rem;
-  }
-}
-
-/* RTL Support */
-[dir="rtl"] .fstt-department-info {
-  border-right: none;
-  border-left: 1px solid #eee;
-}
-
-[dir="rtl"] .fstt-department-programs ul {
-  padding-left: 0;
-  padding-right: 20px;
-}
-
-@media (max-width: 768px) {
-  [dir="rtl"] .fstt-department-info {
-    border-left: none;
+  .fstt-features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
   }
 }

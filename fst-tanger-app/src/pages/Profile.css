@@ -1,0 +1,147 @@
+.fstt-profile {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.fstt-profile-content {
+  margin-top: 20px;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+}
+
+.fstt-profile-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background: var(--gradient-primary);
+  color: white;
+  position: relative;
+}
+
+.fstt-profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  font-weight: bold;
+  margin-right: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fstt-profile-header-info {
+  flex: 1;
+}
+
+.fstt-profile-header-info h2 {
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 24px;
+}
+
+.fstt-profile-email {
+  margin: 0;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.fstt-role-badge {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+}
+
+.fstt-profile-actions {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.fstt-profile-details {
+  padding: 20px;
+}
+
+.fstt-profile-section {
+  margin-bottom: 30px;
+}
+
+.fstt-profile-section:last-child {
+  margin-bottom: 0;
+}
+
+.fstt-profile-section h3 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+}
+
+.fstt-profile-field {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.fstt-profile-field-label {
+  width: 150px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.fstt-profile-field-value {
+  flex: 1;
+  color: var(--text-primary);
+}
+
+.fstt-profile-edit-form {
+  padding: 20px;
+}
+
+.fstt-profile-form-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fstt-profile-not-logged-in {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .fstt-profile-header {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 30px;
+  }
+  
+  .fstt-profile-avatar {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  
+  .fstt-profile-actions {
+    position: static;
+    margin-top: 15px;
+  }
+  
+  .fstt-profile-field {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .fstt-profile-field-label {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+}

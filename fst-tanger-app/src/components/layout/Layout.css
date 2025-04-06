@@ -5,10 +5,12 @@
   min-height: 100vh;
   overflow: hidden;
   font-family: 'Roboto', 'Arial', sans-serif;
-  background-color: #f5f5f5;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   position: relative;
   padding-top: 0; /* Ensure no top padding pushes content down */
   margin-top: 0; /* Ensure no top margin */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .fstt-main-content {
@@ -18,14 +20,19 @@
   overflow-y: auto;
   width: 100%;
   position: relative;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .fstt-content {
   flex: 1;
   padding: 20px;
-  transition: margin-left 0.3s ease;
+  transition: margin-left 0.3s ease, background-color 0.3s ease, color 0.3s ease;
   width: 100%;
   overflow-x: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .fstt-content.sidebar-open {

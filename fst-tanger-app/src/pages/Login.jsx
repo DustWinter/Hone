@@ -18,6 +18,16 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [showExamples, setShowExamples] = useState(false);
+  
+  // Hardcoded example emails to avoid database issues
+  const exampleEmails = [
+    'melbrak@yahoo.fr',          // Department Head
+    'wafaebaida@gmail.com',      // Coordinator
+    'lelaachak@uae.ac.ma',       // Teacher
+    'elgorrim.mohamed@etu.uae.ac.ma', // Student
+    'abenali@uae.ac.ma'          // Technician
+  ];
   
   // Redirect if already logged in
   useEffect(() => {
@@ -37,23 +47,28 @@ const Login = () => {
     e.preventDefault();
     setErrorMessage('');
     
-    if (!email || !password) {
-      setErrorMessage(t('auth.fieldsRequired'));
+    if (!email) {
+      setErrorMessage(t('auth.emailRequired'));
       return;
     }
     
     setLoading(true);
     
     try {
-      const result = await login(email, password);
+      const result = await login(email, password || 'password');
       if (!result.success) {
         setErrorMessage(result.error || t('auth.loginError'));
       }
     } catch (err) {
       setErrorMessage(err.message || t('auth.loginError'));
+    } finally {
+      setLoading(false);
     }
-    
-    setLoading(false);
+  };
+  
+  const setExampleEmail = (exampleEmail) => {
+    setEmail(exampleEmail);
+    setPassword('password');  // Set a dummy password
   };
   
   return (
@@ -66,9 +81,9 @@ const Login = () => {
       
       <div className="fstt-login-card">
         <div className="fstt-login-header">
-          <img src="/src/assets/image.png" alt="FSTT Logo" className="fstt-login-logo" />
-          <h1>{t('app.title')}</h1>
-          <h2>{t('app.subtitle')}</h2>
+          <img src="/src/assets/fstt-logo.png" alt="FSTT Logo" className="fstt-login-logo" onError={(e) => e.target.src = '/favicon.ico'} />
+          <h1>{t('department.title')}</h1>
+          <h2>{t('department.fullName')}</h2>
         </div>
         
         <form onSubmit={handleSubmit} className="fstt-login-form">
@@ -80,6 +95,7 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              placeholder="example@uae.ac.ma"
             />
           </div>
           
@@ -90,8 +106,11 @@ const Login = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
+              placeholder={t('auth.passwordPlaceholder')}
             />
+            <p className="fstt-login-hint">
+              {t('auth.demoPasswordHint')}
+            </p>
           </div>
           
           {errorMessage && (
@@ -108,9 +127,33 @@ const Login = () => {
             {loading ? t('common.loading') : t('auth.loginButton')}
           </button>
           
-          <a href="#" className="fstt-login-forgot">
-            {t('auth.forgotPassword')}
-          </a>
+          <div className="fstt-login-examples">
+            <button
+              type="button"
+              className="fstt-login-examples-toggle"
+              onClick={() => setShowExamples(!showExamples)}
+            >
+              {showExamples ? t('auth.hideExamples') : t('auth.showExamples')}
+            </button>
+            
+            {showExamples && (
+              <div className="fstt-login-examples-list">
+                <p>{t('auth.clickEmailInstructions')}</p>
+                <ul>
+                  {exampleEmails.map((exampleEmail, index) => (
+                    <li key={index}>
+                      <button
+                        type="button"
+                        onClick={() => setExampleEmail(exampleEmail)}
+                      >
+                        {exampleEmail}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </form>
         
         <div className="fstt-login-footer">

@@ -278,15 +278,15 @@ const Dashboard = () => {
     return null;
   };
   
-  if (!currentUser) return <div>Chargement...</div>;
+  if (!currentUser) return <div>{t('common.loading')}</div>;
   
   return (
     <div className="fstt-dashboard">
       <h1>{t('nav.dashboard')}</h1>
       
       <div className="fstt-dashboard-welcome">
-        <h2>Bienvenue, {currentUser.nom}</h2>
-        <p>Rôle: {currentUser.role}</p>
+        <h2>{t('dashboard.welcome', { name: currentUser.nom })}</h2>
+        <p>{t('dashboard.role')}: {currentUser.role}</p>
       </div>
       
       <div className="fstt-dashboard-stats">

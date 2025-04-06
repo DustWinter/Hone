@@ -1,20 +1,38 @@
 /* Incidents page styles */
 .fstt-incidents {
+  padding: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
 }
 
 .fstt-incidents h1 {
-  color: #00519b;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  color: var(--text-primary);
+}
+
+.fstt-incidents-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .fstt-incidents-list {
-  background-color: white;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  background-color: var(--card-bg);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  transition: all var(--transition-speed) ease;
+  margin-bottom: 1.5rem;
+}
+
+.fstt-incidents-actions {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .fstt-table {
@@ -74,38 +92,71 @@
   font-weight: 500;
 }
 
-.fstt-badge.priority-haute {
-  background-color: #ffebee;
-  color: #c62828;
+.priority-haute {
+  background-color: var(--badge-bg-danger);
+  color: var(--badge-text-danger);
 }
 
-.fstt-badge.priority-moyenne {
-  background-color: #fff8e1;
-  color: #f57f17;
+.priority-moyenne {
+  background-color: var(--badge-bg-warning);
+  color: var(--badge-text-warning);
 }
 
-.fstt-badge.priority-normale {
-  background-color: #e8f5e9;
-  color: #2e7d32;
+.priority-basse {
+  background-color: var(--badge-bg-info);
+  color: var(--badge-text-info);
 }
 
-.fstt-badge.status-soumis {
-  background-color: #e3f2fd;
-  color: #1565c0;
+.status-en-cours,
+.status-en-cours {
+  background-color: var(--badge-bg-info);
+  color: var(--badge-text-info);
 }
 
-.fstt-badge.status-en-cours {
-  background-color: #fff8e1;
-  color: #f57f17;
+.status-résolu,
+.status-résolu {
+  background-color: var(--badge-bg-success);
+  color: var(--badge-text-success);
 }
 
-.fstt-badge.status-résolu {
-  background-color: #e8f5e9;
-  color: #2e7d32;
+.status-soumis {
+  background-color: var(--badge-bg-warning);
+  color: var(--badge-text-warning);
+}
+
+.status-clôturé {
+  background-color: var(--badge-bg-default);
+  color: var(--badge-text-default);
 }
 
 /* RTL support */
 [dir="rtl"] .fstt-table th, 
 [dir="rtl"] .fstt-table td {
   text-align: right;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fstt-incidents-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .fstt-filter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .fstt-filter select {
+    width: 100%;
+  }
+
+  .fstt-table-container {
+    overflow-x: auto;
+  }
+
+  .fstt-table {
+    min-width: 600px;
+  }
 }

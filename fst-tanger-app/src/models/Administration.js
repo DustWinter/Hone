@@ -19,6 +19,11 @@ export class Administration {
     };
   }
 
+  /**
+   * Schedule a class session
+   * @param {Object} seance - Class session object to schedule
+   * @returns {Object} Scheduled session data
+   */
   planifierSeance(seance) {
     // Check if the seance's date is at least 7 days in the future (deadline requirement)
     const today = new Date();
@@ -30,70 +35,147 @@ export class Administration {
       throw new Error("La séance doit être planifiée au moins 7 jours à l'avance.");
     }
     
-    return seance;
+    return {
+      ...seance,
+      planifiee_par: this.id,
+      date_planification: new Date()
+    };
   }
 
+  /**
+   * Handle room reservation requests
+   * @param {Object} demandeReservation - Reservation request to handle
+   * @param {Boolean} accepte - Whether to accept the request
+   * @returns {Object} Updated reservation request
+   */
   gererReservation(demandeReservation, accepte = true) {
     demandeReservation.statut = accepte ? 'Acceptée' : 'Refusée';
+    demandeReservation.administration_id = this.id;
+    demandeReservation.date_traitement = new Date();
+    
     return demandeReservation;
   }
 
+  /**
+   * Forward a technical incident to a technician
+   * @param {Object} incident - Incident to forward
+   * @param {Number} technicienId - ID of the assigned technician
+   * @returns {Object} Updated incident data
+   */
   transmettreIncident(incident, technicienId) {
     incident.statut = 'Assigné';
-    incident.technicienId = technicienId;
+    incident.technicien_id = technicienId;
+    incident.administration_id = this.id;
+    incident.date_transmission = new Date();
+    
     return incident;
   }
 
+  /**
+   * Generate a student's academic report
+   * @param {Number} etudiantId - ID of the student
+   * @param {String} semestre - Semester for the report
+   * @param {Number} annee - Academic year
+   * @returns {Object} Generated report data
+   */
   genererBulletin(etudiantId, semestre, annee) {
     return {
-      etudiantId,
+      etudiant_id: etudiantId,
       semestre,
       annee,
-      dateGeneration: new Date(),
+      date_generation: new Date(),
+      generee_par: this.id,
       statut: 'Généré'
     };
   }
 
-  affecterCours(enseignantId, coursId) {
+  /**
+   * Assign a course to a teacher
+   * @param {Number} enseignantId - ID of the teacher
+   * @param {String} coursCode - Code of the course
+   * @returns {Object} Course assignment record
+   */
+  affecterCours(enseignantId, coursCode) {
     return {
-      enseignantId,
-      coursId,
-      dateAffectation: new Date()
+      enseignant_id: enseignantId,
+      cours_code: coursCode,
+      administration_id: this.id,
+      date_affectation: new Date(),
+      statut: 'Affecté'
     };
   }
 
+  /**
+   * Validate or reject evaluation grades
+   * @param {Number} evaluationId - ID of the evaluation
+   * @param {Boolean} validate - Whether to validate the grades
+   * @returns {Object} Validation record
+   */
   validerNotes(evaluationId, validate = true) {
     return {
-      evaluationId,
+      evaluation_id: evaluationId,
+      administration_id: this.id,
       statut: validate ? 'Validée' : 'Rejetée',
-      dateValidation: new Date()
+      date_validation: new Date(),
+      commentaire: ''
     };
   }
 
-  verifierDisponibiliteSalle(salleId, date) {
-    // Logic to check room availability for a given date
-    return true; // Placeholder
+  /**
+   * Check if a room is available on a given date
+   * @param {Number} salleId - ID of the room
+   * @param {Date} date - Date to check
+   * @param {String} intervalle - Time slot to check
+   * @returns {Promise<Boolean>} True if the room is available
+   */
+  async verifierDisponibiliteSalle(salleId, date, intervalle = null) {
+    // This would typically query a database to check for conflicts
+    // For this implementation, returning placeholder value
+    return true;
   }
 
+  /**
+   * Register a new technical incident
+   * @param {Object} incident - Incident data to register
+   * @returns {Object} Registered incident data
+   */
   enregistrerIncident(incident) {
     incident.statut = 'Enregistré';
+    incident.administration_id = this.id;
+    incident.date_enregistrement = new Date();
+    
     return incident;
   }
 
+  /**
+   * Update the status of a technical incident
+   * @param {Number} incidentId - ID of the incident
+   * @param {String} nouvelEtat - New status for the incident
+   * @returns {Object} Updated incident status record
+   */
   mettreAJourEtatIncident(incidentId, nouvelEtat) {
     return {
-      incidentId,
+      incident_id: incidentId,
       statut: nouvelEtat,
-      dateMiseAJour: new Date()
+      modifie_par: this.id,
+      date_mise_a_jour: new Date()
     };
   }
 
-  gererSalles(salleId, action) {
-    // Logic to manage classrooms (add, modify, delete)
+  /**
+   * Manage classroom operations (add, modify, delete)
+   * @param {Number} salleId - ID of the room (null for new rooms)
+   * @param {String} action - Action to perform (ajouter, modifier, supprimer)
+   * @param {Object} donneesModification - Room data for add/modify operations
+   * @returns {Object} Room management operation record
+   */
+  gererSalles(salleId, action, donneesModification = {}) {
     return {
-      salleId,
+      salle_id: salleId,
       action,
-      dateAction: new Date()
+      donnees: donneesModification,
+      administration_id: this.id,
+      date_action: new Date()
     };
   }
 }
