@@ -13,7 +13,12 @@
   height: 64px;
   transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
-
+.ns {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
 .fstt-header-start,
 .fstt-header-end {
   display: flex;

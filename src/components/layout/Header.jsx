@@ -27,7 +27,7 @@ const Header = ({ toggleSidebar }) => {
   };
   
   return (
-    <header className="fstt-header">
+    <header className="fstt-header ns">
       <div className="fstt-header-start">
         <button 
           className="fstt-menu-toggle" 
