@@ -51,6 +51,9 @@ function App() {
             console.error('Error initializing database with sample data:', initError);
           }
         }
+        else {
+          console.log("Database not initialized.")
+        }
         
         setDbInitialized(true);
       } catch (error) {
@@ -66,7 +69,7 @@ function App() {
   // Show loading while initializing database
   if (!dbInitialized) {
     return (
-      <div className="fstt-app-loading ns">
+      <div className="fstt-app-loading">
         <h2>{t('common.loading') || 'Chargement...'}</h2>
         <p>{t('common.initializing') || 'Initialisation de l\'application'}</p>
       </div>

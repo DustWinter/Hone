@@ -24,3 +24,21 @@
   margin-left: 0;
   margin-right: 10px;
 }
+
+.language-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.language-toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

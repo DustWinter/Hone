@@ -3,18 +3,15 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
   width: 280px;
+  height: 100%;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  box-shadow: var(--shadow-sm);
+  z-index: 1001;
   transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out, background-color var(--transition-speed) ease, color var(--transition-speed) ease;
-  display: flex;
-  flex-direction: column;
-  z-index: 1000; /* Ensure z-index is higher than overlay */
-  border-right: 1px solid var(--border-color);
+  transition: transform 0.3s ease, background-color 0.3s ease;
   overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .fstt-sidebar.open {
@@ -29,7 +26,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  z-index: 1000;
   display: none;
 }
 
@@ -50,23 +47,22 @@
 
 .fstt-app-name {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 700;
   color: white;
 }
 
 /* Close button styles */
 .fstt-sidebar-close {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
   background: transparent;
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 8px;
-  z-index: 1001; /* Make sure this is higher than the overlay */
+  border-radius: 4px;
+  transition: background-color 0.2s;
 }
 
 .fstt-sidebar-close:hover {
@@ -76,12 +72,13 @@
 .fstt-sidebar-close img {
   width: 24px;
   height: 24px;
-  pointer-events: none; /* Ensure clicks pass through to the button */
+  pointer-events: none; /* This ensures clicks register on button, not image */
 }
 
 .fstt-sidebar-content {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 1rem 0;
 }
 
@@ -97,17 +94,18 @@
   text-decoration: none;
   color: var(--text-primary);
   font-weight: 500;
-  transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
   position: relative;
   overflow: hidden;
 }
 
 .fstt-nav-item:hover {
   background-color: var(--bg-secondary);
+  transform: translateX(4px);
 }
 
 .fstt-nav-item.active {
-  color: var(--accent-color);
+  color: var(--primary);
   background-color: rgba(var(--accent-color-rgb, 0, 81, 155), 0.1);
   font-weight: 600;
 }
@@ -120,6 +118,7 @@
   bottom: 0;
   width: 4px;
   background: var(--gradient-primary);
+  border-radius: 0 2px 2px 0;
 }
 
 .fstt-nav-icon {
@@ -167,20 +166,44 @@
   flex: 1;
   display: block;
   padding: 8px 12px;
-  border-radius: 4px;
+  border-radius: 6px;
   text-align: center;
   font-size: 0.9rem;
   text-decoration: none;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.fstt-profile-btn:before,
+.fstt-settings-btn:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.fstt-profile-btn:hover:before,
+.fstt-settings-btn:hover:before {
+  left: 0;
 }
 
 .fstt-profile-btn {
   background-color: var(--primary);
   color: white;
+  border: none;
+}
+
+.fstt-profile-btn:before {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .fstt-profile-btn:hover {
-  background-color: var(--primary-dark, #0055aa);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
 .fstt-settings-btn {
@@ -189,8 +212,13 @@
   border: 1px solid var(--border-color);
 }
 
+.fstt-settings-btn:before {
+  background: rgba(0, 0, 0, 0.05);
+}
+
 .fstt-settings-btn:hover {
-  background-color: var(--bg-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .fstt-logout-btn {
@@ -202,15 +230,35 @@
   background-color: #ffebee;
   color: #d32f2f;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   font-weight: 500;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.fstt-logout-btn:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.fstt-logout-btn:hover:before {
+  left: 0;
 }
 
 .fstt-logout-btn:hover {
   background-color: #d32f2f;
   color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
 .fstt-btn-icon {
@@ -284,4 +332,44 @@
 [dir="rtl"] .fstt-btn-icon {
   margin-right: 0;
   margin-left: 8px;
+}
+
+/* Dark mode enhancements */
+[data-theme="dark"] .fstt-sidebar {
+  background-color: var(--bg-primary);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .fstt-sidebar-header {
+  background: var(--header-gradient);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .fstt-nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .fstt-nav-item.active {
+  background-color: rgba(var(--accent-color-rgb), 0.15);
+}
+
+[data-theme="dark"] .fstt-sidebar-footer {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .fstt-settings-btn {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .fstt-logout-btn {
+  background-color: rgba(211, 47, 47, 0.15);
+  color: #ef5350;
+}
+
+[data-theme="dark"] .fstt-logout-btn:hover {
+  background-color: #d32f2f;
+  color: white;
 }

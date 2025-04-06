@@ -254,7 +254,7 @@ const Administration = () => {
     <div className="fstt-admin ns">
       <h1>{t('nav.admin')}</h1>
       
-      <div className="fstt-admin-welcome ns">
+      <div className="fstt-admin-welcome">
         <h2>{t('admin.welcomeTitle')}</h2>
         <p>{t('admin.welcomeMessage')}</p>
       </div>

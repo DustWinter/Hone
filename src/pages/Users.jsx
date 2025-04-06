@@ -331,8 +331,8 @@ const Users = () => {
 
   // Add User Modal
   const addUserModal = (
-    <div className={`fstt-modal ${showAddModal ? 'show' : ''}`}>
-      <div className="fstt-modal-content ns">
+    <div className={`fstt-modal ${showAddModal ? 'show' : ''} ns`}>
+      <div className="fstt-modal-content">
         <div className="fstt-modal-header">
           <h3>{t('users.addUser')}</h3>
           <button className="fstt-modal-close" onClick={() => setShowAddModal(false)}>&times;</button>
@@ -419,8 +419,8 @@ const Users = () => {
 
   // Edit User Modal
   const editUserModal = (
-    <div className={`fstt-modal ${showEditModal ? 'show' : ''}`}>
-      <div className="fstt-modal-content ns">
+    <div className={`fstt-modal ${showEditModal ? 'show' : ''} ns`}>
+      <div className="fstt-modal-content">
         <div className="fstt-modal-header">
           <h3>{t('users.editUser')}</h3>
           <button className="fstt-modal-close" onClick={() => setShowEditModal(false)}>&times;</button>
@@ -479,8 +479,8 @@ const Users = () => {
 
   // Delete User Modal
   const deleteUserModal = (
-    <div className={`fstt-modal ${showDeleteModal ? 'show' : ''}`}>
-      <div className="fstt-modal-content ns">
+    <div className={`fstt-modal ${showDeleteModal ? 'show' : ''} ns`}>
+      <div className="fstt-modal-content">
         <div className="fstt-modal-header">
           <h3>{t('users.deleteUser')}</h3>
           <button className="fstt-modal-close" onClick={() => setShowDeleteModal(false)}>&times;</button>
@@ -514,7 +514,7 @@ const Users = () => {
   }
 
   if (loading) {
-    return <div className="fstt-loading ns">{t('common.loading')}</div>;
+    return <div className="fstt-loading">{t('common.loading')}</div>;
   }
 
   return (

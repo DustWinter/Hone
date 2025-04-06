@@ -284,12 +284,12 @@ const Dashboard = () => {
     <div className="fstt-dashboard ns">
       <h1>{t('nav.dashboard')}</h1>
       
-      <div className="fstt-dashboard-welcome ns">
+      <div className="fstt-dashboard-welcome">
         <h2>{t('dashboard.welcome', { name: currentUser.nom })}</h2>
         <p>{t('dashboard.role')}: {currentUser.role}</p>
       </div>
       
-      <div className="fstt-dashboard-stats ns">
+      <div className="fstt-dashboard-stats">
         <div className="fstt-stat-card">
           <h3>{stats.cours}</h3>
           <p>{t('nav.courses')}</p>

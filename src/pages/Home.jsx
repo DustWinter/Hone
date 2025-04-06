@@ -28,7 +28,7 @@ const Home = () => {
               {t('auth.login')}
             </Link>
           ) : (
-            <Link to="/dashboard" className="fstt-btn fstt-btn-primary">
+            <Link to="/dashboard" className="fstt-btn fstt-btn-primary" style={{ color: 'white' }}>
               {t('nav.dashboard')}
             </Link>
           )}
@@ -99,7 +99,7 @@ const Home = () => {
             <h3>{t('internships.title')}</h3>
             <p>{t('home.internshipsDescription')}</p>
           </div>
-          
+
         </div>
       </section>
     </div>

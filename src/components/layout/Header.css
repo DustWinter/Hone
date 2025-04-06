@@ -1,4 +1,10 @@
 /* Header styles based on FSTT's official website */
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../assets/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 .fstt-header {
   display: flex;
   align-items: center;
@@ -11,14 +17,25 @@
   top: 0;
   z-index: 100;
   height: 64px;
-  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
-.ns {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+
+/* Header styles based on FSTT's official website */
+.fstt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  background: var(--header-gradient);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 64px;
+  transition: all 0.3s ease;
 }
+
 .fstt-header-start,
 .fstt-header-end {
   display: flex;
@@ -26,16 +43,25 @@
 }
 
 .fstt-header-end {
-  display: flex;
-  align-items: center;
   gap: 10px;
 }
-
+.title{
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  transition: color 0.3s ease;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
 .fstt-header-title {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-grow: 1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .fstt-header-title h1 {
@@ -67,7 +93,12 @@
 .fstt-menu-toggle:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
-
+.ns {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+}
 .fstt-menu-toggle svg {
   stroke: currentColor;
   stroke-width: 2;
@@ -78,8 +109,6 @@
   height: 24px;
   display: block;
 }
-
-/* Removed logo-related styles as requested */
 
 /* User dropdown styles */
 .fstt-user-dropdown {
@@ -96,9 +125,10 @@
   padding: 0;
 }
 
+/* User dropdown styles - improved contrast and hover effects */
 .fstt-user-avatar {
-  width: 36px;
-  height: 36px;
+  width: 1px;
+  height: 1px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
@@ -107,20 +137,22 @@
   justify-content: center;
   font-weight: 600;
   font-size: 1rem;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .fstt-user-dropdown:hover .fstt-user-avatar,
 .fstt-user-dropdown.active .fstt-user-avatar {
   background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
 }
 
 .fstt-dropdown-content {
   position: absolute;
   right: 0;
   top: 45px;
-  background-color: white;
+  background-color: var(--bg-primary);
   min-width: 220px;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
@@ -129,7 +161,7 @@
   visibility: hidden;
   transform: translateY(-10px);
   transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-color);
   z-index: 1000;
 }
 
@@ -142,21 +174,21 @@
 
 .fstt-dropdown-header {
   padding: 12px 15px;
-  border-bottom: 1px solid #e0e0e0;
-  background-color: #f5f7fa;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
 }
 
 .fstt-dropdown-name {
   display: block;
   font-weight: 600;
   margin-bottom: 4px;
-  color: #333333;
+  color: var(--text-primary);
 }
 
 .fstt-dropdown-role {
   display: block;
   font-size: 0.8rem;
-  color: #666666;
+  color: var(--text-secondary);
 }
 
 .fstt-dropdown-item {
@@ -164,7 +196,7 @@
   align-items: center;
   padding: 12px 15px;
   text-decoration: none;
-  color: #333333;
+  color: var(--text-primary);
   width: 100%;
   text-align: left;
   background: none;
@@ -175,7 +207,7 @@
 }
 
 .fstt-dropdown-item:hover {
-  background-color: #f5f7fa;
+  background-color: var(--bg-secondary);
 }
 
 .fstt-icon {
@@ -185,23 +217,44 @@
 
 .fstt-logout {
   color: #cc0000;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--border-color);
 }
 
+/* Login button with better hover effect */
 .fstt-login-link {
   display: flex;
   align-items: center;
   padding: 8px 16px;
   text-decoration: none;
   color: white;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
   font-weight: 500;
-  transition: background-color 0.2s;
+  transition: all 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.fstt-login-link:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.fstt-login-link:hover:before {
+  left: 0;
 }
 
 .fstt-login-link:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .fstt-login-icon {
@@ -213,11 +266,6 @@
 [dir="rtl"] .fstt-menu-toggle {
   margin-right: 0;
   margin-left: 15px;
-}
-
-[dir="rtl"] .fstt-logo-container {
-  margin-right: 0;
-  margin-left: 10px;
 }
 
 [dir="rtl"] .fstt-user-dropdown {
@@ -236,6 +284,68 @@
   margin-left: 10px;
 }
 
+/* Theme toggle and language toggle enhancements */
+.theme-toggle-btn,
+.language-toggle-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 6px;
+  width: 40px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-toggle-btn:before,
+.language-toggle-btn:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-btn:hover:before,
+.language-toggle-btn:hover:before {
+  left: 0;
+}
+
+.theme-toggle-btn:hover,
+.language-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode Enhancements */
+[data-theme="dark"] .fstt-header {
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .fstt-dropdown-content {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .fstt-dropdown-header {
+  background-color: var(--bg-secondary);
+}
+
+[data-theme="dark"] .theme-toggle-btn,
+[data-theme="dark"] .language-toggle-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .fstt-header-title h1 {
@@ -252,16 +362,6 @@
     font-size: 1rem;
   }
   
-  .fstt-logo-container {
-    width: 36px;
-    height: 36px;
-  }
-  
-  .fstt-logo-img {
-    height: 28px;
-  }
-  
-  .fstt-logo-subtitle,
   .fstt-login-text {
     display: none;
   }

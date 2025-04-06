@@ -1,34 +1,37 @@
-import { useState, useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { useState, useCallback } from 'react';
+import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import Footer from './Footer';
 import './Layout.css';
 
 /**
- * Main layout component
- * Provides structure for the application with header, sidebar, and content area
+ * Main application layout component
+ * Handles layout structure and sidebar state
  */
 const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const location = useLocation();
   
-  // Close sidebar when location changes (navigation)
-  useEffect(() => {
+  // Toggle sidebar function that will be passed to Header
+  const toggleSidebar = useCallback(() => {
+    setSidebarOpen(prevState => !prevState);
+    console.log('Toggling sidebar');
+  }, []);
+  
+  // For closing the sidebar specifically
+  const closeSidebar = useCallback(() => {
+    console.log('Closing sidebar');
     setSidebarOpen(false);
-  }, [location.pathname]);
-  
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
+  }, []);
   
   return (
     <div className="fstt-layout">
       <Header toggleSidebar={toggleSidebar} />
-      <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
-      
+      <Sidebar isOpen={sidebarOpen} closeSidebar={closeSidebar} />
       <main className="fstt-main">
         <Outlet />
       </main>
+      <Footer />
     </div>
   );
 };

@@ -8,18 +8,17 @@
   margin-bottom: 20px;
   color: var(--text-primary);
 }
-
+.ns {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+}
 .fstt-evaluations-header {
   margin-bottom: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.ns {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
 }
 
 .fstt-course-selector {

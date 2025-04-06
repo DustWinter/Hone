@@ -520,9 +520,3 @@ html, body, #root {
 .read-the-docs {
   color: #888;
 }
-.ns {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-}

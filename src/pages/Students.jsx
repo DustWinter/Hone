@@ -118,7 +118,7 @@ const Students = () => {
               {filteredStudents.map(student => (
                 <tr key={student.id}>
                   <td>{student.appogee}</td>
-                  <td>{student.nom} {student.prenom}</td>
+                  <td>{student.nom}</td>
                   <td>{student.programme}</td>
                   <td>{student.niveau}</td>
                   <td>

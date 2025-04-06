@@ -22,11 +22,11 @@ const Login = () => {
   
   // Hardcoded example emails to avoid database issues
   const exampleEmails = [
-    'melbrak@yahoo.fr',          // Department Head
-    'wafaebaida@gmail.com',      // Coordinator
-    'lelaachak@uae.ac.ma',       // Teacher
-    'elgorrim.mohamed@etu.uae.ac.ma', // Student
-    'abenali@uae.ac.ma'          // Technician
+    { email: 'melbrak@yahoo.fr', role: 'Chef de Département' },
+    { email: 'wafaebaida@gmail.com', role: 'Coordinateur' },
+    { email: 'lelaachak@uae.ac.ma', role: 'Enseignant' },
+    { email: 'elgorrim.mohamed@etu.uae.ac.ma', role: 'Étudiant' },
+    { email: 'abenali@uae.ac.ma', role: 'Technicien' }
   ];
   
   // Redirect if already logged in
@@ -81,14 +81,14 @@ const Login = () => {
       
       <div className="fstt-login-card">
         <div className="fstt-login-header">
-          <img src="/src/assets/fstt-logo.png" alt="FSTT Logo" className="fstt-login-logo" onError={(e) => e.target.src = '/favicon.ico'} />
+          <img src="/assets/logo-fst.png" alt="FSTT Logo" className="fstt-login-logo" onError={(e) => e.target.src = '/favicon.ico'} />
           <h1>{t('department.title')}</h1>
           <h2>{t('department.fullName')}</h2>
         </div>
         
         <form onSubmit={handleSubmit} className="fstt-login-form">
           <div className="fstt-login-field">
-            <label htmlFor="email ns">{t('auth.email')}</label>
+            <label htmlFor="email">{t('auth.email')}</label>
             <input
               type="email"
               id="email"
@@ -99,7 +99,7 @@ const Login = () => {
             />
           </div>
           
-          <div className="fstt-login-field ns">
+          <div className="fstt-login-field">
             <label htmlFor="password">{t('auth.password')}</label>
             <input
               type="password"
@@ -114,20 +114,20 @@ const Login = () => {
           </div>
           
           {errorMessage && (
-            <div className="fstt-login-error ns">
+            <div className="fstt-login-error">
               {errorMessage}
             </div>
           )}
           
           <button 
             type="submit" 
-            className="fstt-login-button ns" 
+            className="fstt-login-button" 
             disabled={loading}
           >
             {loading ? t('common.loading') : t('auth.loginButton')}
           </button>
           
-          <div className="fstt-login-examples ns">
+          <div className="fstt-login-examples">
             <button
               type="button"
               className="fstt-login-examples-toggle"
@@ -137,16 +137,16 @@ const Login = () => {
             </button>
             
             {showExamples && (
-              <div className="fstt-login-examples-list ns">
+              <div className="fstt-login-examples-list">
                 <p>{t('auth.clickEmailInstructions')}</p>
                 <ul>
-                  {exampleEmails.map((exampleEmail, index) => (
+                  {exampleEmails.map((example, index) => (
                     <li key={index}>
                       <button
                         type="button"
-                        onClick={() => setExampleEmail(exampleEmail)}
+                        onClick={() => setExampleEmail(example.email)}
                       >
-                        {exampleEmail}
+                        <strong>{example.role}:</strong> {example.email}
                       </button>
                     </li>
                   ))}
@@ -156,7 +156,7 @@ const Login = () => {
           </div>
         </form>
         
-        <div className="fstt-login-footer ns">
+        <div className="fstt-login-footer">
           <p>Faculté des Sciences et Techniques de Tanger &copy; {new Date().getFullYear()}</p>
         </div>
       </div>

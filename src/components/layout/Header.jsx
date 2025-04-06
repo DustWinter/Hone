@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../contexts/AuthContext';
 import ThemeToggle from './ThemeToggle';
@@ -28,7 +28,7 @@ const Header = ({ toggleSidebar }) => {
   
   return (
     <header className="fstt-header ns">
-      <div className="fstt-header-start">
+      <div className="fstt-header-start ns">
         <button 
           className="fstt-menu-toggle" 
           onClick={toggleSidebar}
@@ -43,10 +43,11 @@ const Header = ({ toggleSidebar }) => {
           />
         </button>
       </div>
-      
-      <div className="fstt-header-title">
-        <h1>{t('department.title')}</h1>
-      </div>
+      <Link to="/" className="ns" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <div className="fstt-header-title" style={{ fontFamily: 'Roboto, sans-serif' }} >
+          <h1>{t('department.title')}</h1>
+        </div>
+      </Link>
       
       <div className="fstt-header-end">
         <ThemeToggle />
@@ -101,7 +102,7 @@ const Header = ({ toggleSidebar }) => {
                 }} 
                 className="fstt-dropdown-item fstt-logout"
               >
-                <svg className="fstt-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="fstt-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
                   <polyline points="16 17 21 12 16 7"></polyline>
                   <line x1="21" y1="12" x2="9" y2="12"></line>

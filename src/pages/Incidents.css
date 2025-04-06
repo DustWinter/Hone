@@ -10,7 +10,12 @@
   font-size: 1.75rem;
   color: var(--text-primary);
 }
-
+.ns {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+}
 .fstt-incidents-controls {
   display: flex;
   justify-content: space-between;
@@ -18,13 +23,6 @@
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
   gap: 1rem;
-}
-
-.ns {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
 }
 
 .fstt-incidents-list {

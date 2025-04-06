@@ -7,12 +7,7 @@
 .fstt-settings-container {
   margin-top: 20px;
 }
-.ns {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-}
+
 .fstt-settings-section {
   background-color: var(--card-bg);
   border-radius: 8px;
@@ -22,6 +17,12 @@
   border: 1px solid var(--card-border);
 }
 
+.ns {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+}
 .fstt-settings-section h2 {
   margin-top: 0;
   margin-bottom: 20px;

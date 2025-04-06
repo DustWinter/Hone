@@ -10,6 +10,12 @@
   font-size: 1.75rem;
   color: var(--text-primary);
 }
+.ns {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+}
 
 .fstt-resources-controls {
   display: flex;
@@ -25,12 +31,7 @@
   align-items: center;
   gap: 0.5rem;
 }
-.ns {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-}
+
 .fstt-filter label {
   color: var(--text-secondary);
   font-weight: 500;

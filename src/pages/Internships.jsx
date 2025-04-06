@@ -533,7 +533,7 @@ const Internships = () => {
   
   // Render internship form
   const renderInternshipForm = () => (
-    <div className="fstt-internships-form">
+    <div className="fstt-internships-form ns">
       <h2>
         {formData.id ? t('internships.editInternship') : t('internships.addInternship')}
       </h2>
@@ -633,7 +633,7 @@ const Internships = () => {
     if (!selectedInternship) return null;
     
     return (
-      <div className="fstt-internships-details">
+      <div className="fstt-internships-details ns">
         <h2>{t('internships.details')}</h2>
         
         <div className="fstt-internship-header">
@@ -770,7 +770,7 @@ const Internships = () => {
   
   // Report submission modal
   const reportModal = (
-    <div className={`fstt-modal ${showModal.report ? 'show' : ''}`}>
+    <div className={`fstt-modal ${showModal.report ? 'show' : ''} ns`}>
       <div className="fstt-modal-content">
         <div className="fstt-modal-header">
           <h3>{t('internships.submitReport')}</h3>
@@ -825,7 +825,7 @@ const Internships = () => {
   
   // Defense scheduling modal
   const defenseModal = (
-    <div className={`fstt-modal ${showModal.defense ? 'show' : ''}`}>
+    <div className={`fstt-modal ${showModal.defense ? 'show' : ''} ns`}>
       <div className="fstt-modal-content">
         <div className="fstt-modal-header">
           <h3>{t('internships.scheduleDefense')}</h3>
@@ -903,7 +903,7 @@ const Internships = () => {
   
   // Evaluation modal
   const evaluationModal = (
-    <div className={`fstt-modal ${showModal.evaluation ? 'show' : ''}`}>
+    <div className={`fstt-modal ${showModal.evaluation ? 'show' : ''} ns`}>
       <div className="fstt-modal-content">
         <div className="fstt-modal-header">
           <h3>{t('internships.evaluateInternship')}</h3>
@@ -951,7 +951,7 @@ const Internships = () => {
   
   // Delete confirmation modal
   const deleteModal = (
-    <div className={`fstt-modal ${showModal.delete ? 'show' : ''}`}>
+    <div className={`fstt-modal ${showModal.delete ? 'show' : ''} ns`}>
       <div className="fstt-modal-content">
         <div className="fstt-modal-header">
           <h3>{t('internships.deleteInternship')}</h3>
@@ -979,7 +979,7 @@ const Internships = () => {
   }
 
   return (
-    <div className="fstt-internships">
+    <div className="fstt-internships ns">
       <h1>{t('nav.internships')}</h1>
       
       {activeTab === 'list' && renderInternshipList()}

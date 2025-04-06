@@ -1,36 +1,48 @@
 /* Home page styles based on FSTT's design system */
 .fstt-home {
-  max-width: 100%;
-  padding-bottom: 2rem;
-  color: var(--text-primary);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
-/* Hero section */
+/* Enhanced Hero Section */
 .fstt-hero {
-  background: var(--hero-gradient);
-  padding: 4rem 1.5rem;
-  text-align: center;
+  position: relative;
+  padding: 4rem 2rem;
+  margin: 2rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--header-gradient);
+  box-shadow: var(--shadow-md);
   color: white;
-  margin-bottom: 3rem;
-  transition: background 0.3s ease;
+  text-align: center;
+  transition: transform 0.3s ease;
 }
 
-.ns {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+.fstt-hero:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/assets/pattern.svg') center center;
+  opacity: 0.1;
+  z-index: 0;
 }
 
 .fstt-hero-content {
+  position: relative;
+  z-index: 1;
   max-width: 800px;
   margin: 0 auto;
 }
 
 .fstt-hero h1 {
   font-size: 2.5rem;
-  margin-top: 0;
+  font-weight: 700;
   margin-bottom: 1rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .fstt-subtitle {
@@ -38,70 +50,138 @@
   margin-bottom: 2rem;
   opacity: 0.9;
 }
-
-/* Department section */
-.fstt-department-section, 
-.fstt-features-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  margin-bottom: 3rem;
+.ns {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+}
+/* Enhanced Primary Button specifically for hero section */
+.fstt-hero .fstt-btn.fstt-btn-primary {
+  padding: 0.75rem 1.75rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 6px;
+  background-color: white;
+  color: var(--primary);
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-top: 1rem;
+  letter-spacing: 0.5px;
 }
 
-.fstt-department-section h2,
-.fstt-features-section h2 {
+.fstt-hero .fstt-btn.fstt-btn-primary:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.fstt-hero .fstt-btn.fstt-btn-primary:hover:before {
+  left: 0;
+}
+
+.fstt-hero .fstt-btn.fstt-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  color: var(--primary-dark);
+}
+
+.fstt-hero .fstt-btn.fstt-btn-primary:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced Primary Button */
+.fstt-btn.fstt-btn-primary {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  background-color: white;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.fstt-btn.fstt-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.fstt-btn.fstt-btn-primary:active {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Department Section */
+.fstt-department-section {
+  margin: 4rem 0;
+}
+
+.fstt-department-section h2 {
   text-align: center;
   font-size: 1.75rem;
   margin-bottom: 2rem;
   color: var(--text-primary);
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.fstt-department-section h2:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
 }
 
 .fstt-department-card {
-  background-color: var(--card-bg);
-  border-radius: 0.5rem;
-  box-shadow: var(--card-shadow);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  overflow: hidden;
-  border: 1px solid var(--card-border);
-  transition: all var(--transition-speed) ease;
+  background-color: var(--bg-tertiary);
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .fstt-department-info,
 .fstt-department-programs {
-  padding: 1.5rem;
-}
-
-.fstt-department-info {
-  border-right: 1px solid var(--border-color);
+  flex: 1;
+  min-width: 250px;
 }
 
 .fstt-department-info h3,
 .fstt-department-programs h3 {
-  margin-top: 0;
-  font-size: 1.25rem;
   color: var(--text-primary);
   margin-bottom: 1rem;
-}
-
-.fstt-department-info p {
-  margin: 0.5rem 0;
-  color: var(--text-secondary);
-}
-
-.fstt-department-info a {
-  color: var(--text-link);
-  text-decoration: none;
-}
-
-.fstt-department-info a:hover {
-  text-decoration: underline;
-  color: var(--text-link-hover);
+  font-size: 1.2rem;
 }
 
 .fstt-department-programs ul {
-  padding-left: 1.25rem;
-  margin-bottom: 0;
+  padding-left: 1.2rem;
+  margin: 0;
 }
 
 .fstt-department-programs li {
@@ -109,46 +189,103 @@
   color: var(--text-secondary);
 }
 
-/* Features section */
+/* Features Section */
+.fstt-features-section {
+  margin: 4rem 0;
+}
+
+.fstt-features-section h2 {
+  text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.fstt-features-section h2:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+}
+
 .fstt-features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
 }
 
 .fstt-feature-card {
-  background-color: var(--feature-card-bg);
-  border-radius: 0.5rem;
-  box-shadow: var(--card-shadow);
-  padding: 1.5rem;
+  background-color: var(--bg-primary);
+  border-radius: 8px;
+  padding: 2rem;
   text-align: center;
-  border: 1px solid var(--feature-card-border);
-  transition: all var(--transition-speed) ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
 }
 
 .fstt-feature-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--card-hover-shadow);
+  box-shadow: var(--shadow-md);
 }
 
 .fstt-feature-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 1rem;
-  border-radius: 50%;
-  background-color: var(--feature-icon-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent-color);
+  margin-bottom: 1.5rem;
 }
 
-/* Responsive adjustments */
+.fstt-feature-icon svg {
+  width: 50px;
+  height: 50px;
+  color: var(--primary);
+}
+
+.fstt-feature-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.fstt-feature-card p {
+  color: var(--text-secondary);
+}
+
+/* Dark Mode Enhancements */
+[data-theme="dark"] .fstt-hero {
+  /* Darker gradient for dark mode */
+  background: linear-gradient(135deg, #1a237e, #283593);
+}
+
+[data-theme="dark"] .fstt-btn.fstt-btn-primary {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #283593;
+}
+
+[data-theme="dark"] .fstt-department-card {
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .fstt-feature-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .fstt-feature-icon svg {
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.1));
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
   .fstt-hero {
-    padding: 3rem 1rem;
+    padding: 3rem 1.5rem;
   }
-
+  
   .fstt-hero h1 {
     font-size: 2rem;
   }
@@ -157,17 +294,7 @@
     font-size: 1.1rem;
   }
   
-  .fstt-department-card {
-    grid-template-columns: 1fr;
-  }
-  
-  .fstt-department-info {
-    border-right: none;
-    border-bottom: 1px solid var(--border-color);
-  }
-  
   .fstt-features-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
   }
 }
