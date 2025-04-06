@@ -1,0 +1,155 @@
+.fstt-evaluations {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fstt-evaluations h1 {
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.fstt-evaluations-header {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fstt-course-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fstt-course-selector label {
+  font-weight: 500;
+}
+
+.fstt-course-selector select {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  min-width: 300px;
+}
+
+.fstt-evaluations-content {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+}
+
+.fstt-course-info {
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.fstt-course-info h2 {
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.fstt-course-info p {
+  margin: 4px 0;
+  color: var(--text-secondary);
+}
+
+.fstt-evaluations-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.fstt-section {
+  background-color: var(--bg-tertiary);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.fstt-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.fstt-section-header h3 {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.fstt-evaluations-list, .fstt-students-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.fstt-select-course-prompt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.fstt-select-course-prompt p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.fstt-evaluations-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* Student details modal */
+.fstt-student-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.fstt-student-average {
+  font-size: 1.2rem;
+}
+
+.passing {
+  color: #2e7d32; /* Success green */
+  font-weight: 500;
+}
+
+.failing {
+  color: #c62828; /* Error red */
+  font-weight: 500;
+}
+
+.fstt-student-actions {
+  margin-top: 24px;
+}
+
+.fstt-button-group {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .fstt-evaluations-sections {
+    grid-template-columns: 1fr;
+  }
+  
+  .fstt-course-selector {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .fstt-course-selector select {
+    width: 100%;
+  }
+}

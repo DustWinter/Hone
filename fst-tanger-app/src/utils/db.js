@@ -24,7 +24,17 @@ class FSTTDatabase extends Dexie {
       absences: '++id, date, motif, justifiee, etudiant_id, cours_code',
       inscriptions: '++id, dateInscription, statut, etudiant_id, formation_code',
       formations: 'code, intitule, duree',
-      stages: '++id, dateDebut, dateFin, entreprise, sujet, etudiant_id',
+      
+      // Enhanced stages table for internship management
+      stages: '++id, dateDebut, dateFin, entreprise, sujet, etudiant_id, statut, rapportSoumis, dateSoutenance, note',
+      
+      // New tables for internship management
+      rapportsStage: '++id, stage_id, etudiant_id, titre, contenu, date_soumission, statut',
+      evaluationsStage: '++id, stage_id, etudiant_id, note, commentaire, date_evaluation, statut',
+      activitesStage: '++id, stage_id, etudiant_id, activite, date, statut',
+      convocationsSoutenance: '++id, stage_id, date_convocation, jury, date_soutenance',
+      diplomesDelivres: '++id, stage_id, etudiant_id, date_delivrance, numero_diplome',
+      
       deliberations: '++id, date, statut, administration_id',
       laboratoires: '++id, encadrant_id',
       chefDeLabo: 'id',
@@ -59,7 +69,15 @@ class FSTTDatabase extends Dexie {
     this.absences = this.table('absences');
     this.inscriptions = this.table('inscriptions');
     this.formations = this.table('formations');
+    
+    // Define relationships for new tables
     this.stages = this.table('stages');
+    this.rapportsStage = this.table('rapportsStage');
+    this.evaluationsStage = this.table('evaluationsStage');
+    this.activitesStage = this.table('activitesStage');
+    this.convocationsSoutenance = this.table('convocationsSoutenance');
+    this.diplomesDelivres = this.table('diplomesDelivres');
+    
     this.deliberations = this.table('deliberations');
     this.laboratoires = this.table('laboratoires');
     this.chefDeLabo = this.table('chefDeLabo');

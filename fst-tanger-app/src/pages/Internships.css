@@ -1,0 +1,332 @@
+.fstt-internships {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fstt-internships h1 {
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+/* Controls section */
+.fstt-internships-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.fstt-search {
+  flex-grow: 1;
+}
+
+.fstt-search input {
+  width: 100%;
+  max-width: 300px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.fstt-filter select {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  min-width: 150px;
+}
+
+/* Table styles */
+.fstt-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.fstt-table th,
+.fstt-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.fstt-table th {
+  background-color: var(--bg-secondary);
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.fstt-table tr {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.fstt-table tr:last-child {
+  border-bottom: none;
+}
+
+.fstt-table tr:nth-child(even) {
+  background-color: var(--bg-tertiary);
+}
+
+/* Action buttons */
+.fstt-action-buttons {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+/* Status badges */
+.fstt-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-en-cours {
+  background-color: #e3f2fd;
+  color: #0277bd;
+}
+
+.status-rapport-soumis {
+  background-color: #e0f2f1;
+  color: #00695c;
+}
+
+.status-soutenance-planifiée {
+  background-color: #fff3e0;
+  color: #ef6c00;
+}
+
+.status-validé {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-non-validé {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.status-diplôme-autorisé,
+.status-diplôme-remis {
+  background-color: #ede7f6;
+  color: #5e35b1;
+}
+
+/* Form styles */
+.fstt-internships-form {
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 20px;
+}
+
+.fstt-form-group {
+  margin-bottom: 15px;
+}
+
+.fstt-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.fstt-form-group input,
+.fstt-form-group select,
+.fstt-form-group textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+}
+
+.fstt-form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.fstt-form-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.fstt-form-row .fstt-form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.fstt-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Details view */
+.fstt-internships-details {
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.fstt-internship-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.fstt-internship-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.fstt-internship-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.fstt-info-group {
+  margin-bottom: 15px;
+}
+
+.fstt-info-group h4 {
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.fstt-info-group p {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.fstt-grade {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.fstt-grade.passing {
+  color: #2e7d32;
+}
+
+.fstt-grade.failing {
+  color: #c62828;
+}
+
+.fstt-internship-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.fstt-empty-state {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Modal styles */
+.fstt-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.fstt-modal.show {
+  display: flex;
+}
+
+.fstt-modal-content {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  width: 500px;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.fstt-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.fstt-modal-header h3 {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.fstt-modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.fstt-modal-body {
+  padding: 20px;
+}
+
+.fstt-checkbox-group {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.fstt-checkbox-item {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.fstt-checkbox-item input {
+  margin-right: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fstt-internship-info {
+    grid-template-columns: 1fr;
+  }
+  
+  .fstt-form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

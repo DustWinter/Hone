@@ -157,10 +157,15 @@ export class Stage {
     this.entreprise = entreprise;
     this.sujet = sujet;
     this.etudiant_id = etudiant_id;
+    this.statut = 'En cours'; // Initial status
+    this.rapportSoumis = false;
+    this.dateSoutenance = null;
+    this.note = null;
+    this.jury = [];
   }
 
   static fromDb(stageDb) {
-    return new Stage(
+    const stage = new Stage(
       stageDb.id,
       stageDb.dateDebut,
       stageDb.dateFin,
@@ -168,6 +173,15 @@ export class Stage {
       stageDb.sujet,
       stageDb.etudiant_id
     );
+    
+    // Set additional properties if they exist
+    if (stageDb.statut) stage.statut = stageDb.statut;
+    if (stageDb.rapportSoumis) stage.rapportSoumis = stageDb.rapportSoumis;
+    if (stageDb.dateSoutenance) stage.dateSoutenance = stageDb.dateSoutenance;
+    if (stageDb.note) stage.note = stageDb.note;
+    if (stageDb.jury) stage.jury = stageDb.jury;
+    
+    return stage;
   }
 
   toDb() {
@@ -177,7 +191,12 @@ export class Stage {
       dateFin: this.dateFin,
       entreprise: this.entreprise,
       sujet: this.sujet,
-      etudiant_id: this.etudiant_id
+      etudiant_id: this.etudiant_id,
+      statut: this.statut,
+      rapportSoumis: this.rapportSoumis,
+      dateSoutenance: this.dateSoutenance,
+      note: this.note,
+      jury: this.jury
     };
   }
 
@@ -204,6 +223,8 @@ export class Stage {
    * @returns {Object} Submitted report data
    */
   soumettreLivrable(titre, contenu) {
+    this.rapportSoumis = true;
+    
     return {
       stage_id: this.id,
       etudiant_id: this.etudiant_id,
@@ -212,6 +233,117 @@ export class Stage {
       date_soumission: new Date(),
       statut: 'Soumis'
     };
+  }
+  
+  /**
+   * Present the internship report to jury
+   * @returns {Object} Presentation record
+   */
+  presenterRapport() {
+    return {
+      stage_id: this.id,
+      etudiant_id: this.etudiant_id,
+      date_presentation: new Date(),
+      statut: 'Présenté'
+    };
+  }
+  
+  /**
+   * Set the internship defense date
+   * @param {Date} date - Defense date
+   */
+  planifierSoutenance(date) {
+    this.dateSoutenance = date;
+    return {
+      stage_id: this.id,
+      date_soutenance: date,
+      statut: 'Planifiée'
+    };
+  }
+  
+  /**
+   * Add jury members for the defense
+   * @param {Array} juryMembers - Array of jury member IDs
+   */
+  convoquerSoutenance(juryMembers) {
+    this.jury = juryMembers;
+    return {
+      stage_id: this.id,
+      jury: juryMembers,
+      date_convocation: new Date(),
+      statut: 'Convoqué'
+    };
+  }
+  
+  /**
+   * Evaluate student's performance
+   * @param {Number} note - Grade for the internship (0-20)
+   * @param {String} commentaire - Evaluation comments
+   * @returns {Object} Evaluation record
+   */
+  evaluerPerformance(note, commentaire) {
+    if (note < 0 || note > 20) {
+      throw new Error('La note doit être comprise entre 0 et 20');
+    }
+    
+    this.note = note;
+    
+    if (note >= 10) {
+      this.statut = 'Validé';
+    } else {
+      this.statut = 'Non validé';
+    }
+    
+    return {
+      stage_id: this.id,
+      etudiant_id: this.etudiant_id,
+      note,
+      commentaire,
+      date_evaluation: new Date(),
+      statut: this.statut
+    };
+  }
+  
+  /**
+   * Verify if all conditions are met for diploma issuance
+   * @returns {Boolean} True if all conditions are met
+   */
+  verifierConditions() {
+    return this.rapportSoumis && 
+           this.dateSoutenance && 
+           this.note !== null && 
+           this.note >= 10;
+  }
+  
+  /**
+   * Update internship status
+   * @param {String} nouveauStatut - New status
+   * @returns {Object} Status update record
+   */
+  mettreAJourStatut(nouveauStatut) {
+    const statutsValides = [
+      'En cours', 
+      'Rapport soumis', 
+      'Soutenance planifiée', 
+      'Soutenance effectuée', 
+      'Validé', 
+      'Non validé', 
+      'Diplôme autorisé', 
+      'Diplôme remis'
+    ];
+    
+    if (statutsValides.includes(nouveauStatut)) {
+      this.statut = nouveauStatut;
+      
+      return {
+        stage_id: this.id,
+        ancien_statut: this.statut,
+        nouveau_statut: nouveauStatut,
+        date_mise_a_jour: new Date()
+      };
+    } else {
+      throw new Error('Statut non valide');
+    }
   }
 }
 
