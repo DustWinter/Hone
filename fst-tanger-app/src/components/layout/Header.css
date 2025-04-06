@@ -1,226 +1,276 @@
 /* Header styles based on FSTT's official website */
 .fstt-header {
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  position: relative;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-.fstt-header-top {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  border-bottom: 1px solid #eaeaea;
+  padding: 0.75rem 1.5rem;
+  background: var(--header-gradient);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 64px;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.fstt-branding {
+.fstt-header-start,
+.fstt-header-end {
   display: flex;
   align-items: center;
 }
 
-.fstt-logo-container {
+.fstt-header-end {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
 }
 
-.fstt-logo {
-  height: 60px;
-  width: auto;
-  object-fit: contain;
-  margin-right: 20px;
-  transition: transform 0.2s ease;
-}
-
-.fstt-logo:hover {
-  transform: scale(1.05);
-}
-
-.fstt-title {
+.fstt-header-title {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
 }
 
-.fstt-title h1 {
+.fstt-header-title h1 {
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #00519b; /* Primary FST blue */
-}
-
-.fstt-title h2 {
-  margin: 5px 0 0;
-  font-size: 1rem;
-  font-weight: 400;
-  color: #777;
-}
-
-.fstt-header-actions {
-  display: flex;
-  align-items: center;
-}
-
-.fstt-lang-toggle {
-  margin-right: 15px;
-  padding: 5px 10px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.fstt-user-menu {
-  display: flex;
-  align-items: center;
-}
-
-.fstt-user-name {
-  margin-right: 10px;
-  font-weight: 500;
-}
-
-.fstt-btn {
-  padding: 8px 15px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  font-weight: 500;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.fstt-btn-login {
-  background-color: #00519b; /* Primary FST blue */
+  font-size: 1.25rem;
+  font-weight: 600;
   color: white;
-}
-
-.fstt-btn-logout {
-  background-color: #f44336; /* Red */
-  color: white;
-}
-
-.fstt-header-nav {
-  padding: 0 20px;
+  text-align: center;
+  transition: color 0.3s ease;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .fstt-menu-toggle {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
+  color: white;
   cursor: pointer;
-  padding: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+  transition: background-color 0.2s;
+}
+
+.fstt-menu-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.fstt-menu-toggle svg {
+  stroke: currentColor;
+  stroke-width: 2;
 }
 
 .fstt-menu-icon {
+  width: 24px;
+  height: 24px;
   display: block;
-  width: 25px;
-  height: 3px;
-  background: #333;
+}
+
+/* Removed logo-related styles as requested */
+
+/* User dropdown styles */
+.fstt-user-dropdown {
   position: relative;
+  margin-left: 15px;
 }
 
-.fstt-menu-icon::before,
-.fstt-menu-icon::after {
-  content: "";
-  width: 25px;
-  height: 3px;
-  background: #333;
-  position: absolute;
-  left: 0;
-}
-
-.fstt-menu-icon::before {
-  top: -8px;
-}
-
-.fstt-menu-icon::after {
-  bottom: -8px;
-}
-
-.fstt-main-nav ul {
+.fstt-user-button {
   display: flex;
-  list-style: none;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
   padding: 0;
-  margin: 0;
 }
 
-.fstt-main-nav li {
-  margin-right: 20px;
+.fstt-user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.fstt-main-nav a {
+.fstt-user-dropdown:hover .fstt-user-avatar,
+.fstt-user-dropdown.active .fstt-user-avatar {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.fstt-dropdown-content {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  background-color: white;
+  min-width: 220px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+  border: 1px solid #e0e0e0;
+  z-index: 1000;
+}
+
+.fstt-user-dropdown:hover .fstt-dropdown-content,
+.fstt-user-dropdown.active .fstt-dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.fstt-dropdown-header {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #f5f7fa;
+}
+
+.fstt-dropdown-name {
   display: block;
-  padding: 15px 10px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #333333;
+}
+
+.fstt-dropdown-role {
+  display: block;
+  font-size: 0.8rem;
+  color: #666666;
+}
+
+.fstt-dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
   text-decoration: none;
-  color: #333;
+  color: #333333;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.fstt-dropdown-item:hover {
+  background-color: #f5f7fa;
+}
+
+.fstt-icon {
+  margin-right: 10px;
+  stroke: currentColor;
+}
+
+.fstt-logout {
+  color: #cc0000;
+  border-top: 1px solid #e0e0e0;
+}
+
+.fstt-login-link {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
   font-weight: 500;
-  transition: color 0.2s;
+  transition: background-color 0.2s;
 }
 
-.fstt-main-nav a:hover,
-.fstt-main-nav a.active {
-  color: #00519b; /* Primary FST blue */
-  border-bottom: 2px solid #00519b;
+.fstt-login-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .fstt-header-top {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .fstt-branding {
-    margin-bottom: 15px;
-  }
-  
-  .fstt-header-actions {
-    width: 100%;
-    justify-content: space-between;
-  }
-  
-  .fstt-menu-toggle {
-    display: block;
-  }
-  
-  .fstt-main-nav ul {
-    flex-direction: column;
-    display: none;
-  }
-  
-  .fstt-main-nav.open ul {
-    display: flex;
-  }
-  
-  .fstt-main-nav li {
-    margin-right: 0;
-    border-bottom: 1px solid #eaeaea;
-  }
+.fstt-login-icon {
+  margin-right: 8px;
+  stroke: currentColor;
 }
 
-/* RTL Support */
-[dir="rtl"] .fstt-logo {
-  margin-right: 0;
-  margin-left: 20px;
-}
-
-[dir="rtl"] .fstt-lang-toggle {
+/* RTL support */
+[dir="rtl"] .fstt-menu-toggle {
   margin-right: 0;
   margin-left: 15px;
 }
 
-[dir="rtl"] .fstt-user-name {
+[dir="rtl"] .fstt-logo-container {
   margin-right: 0;
   margin-left: 10px;
 }
 
-[dir="rtl"] .fstt-main-nav li {
+[dir="rtl"] .fstt-user-dropdown {
+  margin-left: 0;
+  margin-right: 15px;
+}
+
+[dir="rtl"] .fstt-dropdown-content {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] .fstt-icon,
+[dir="rtl"] .fstt-login-icon {
   margin-right: 0;
-  margin-left: 20px;
+  margin-left: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fstt-header-title h1 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .fstt-header {
+    padding: 0.5rem 1rem;
+  }
+  
+  .fstt-header-title h1 {
+    font-size: 1rem;
+  }
+  
+  .fstt-logo-container {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .fstt-logo-img {
+    height: 28px;
+  }
+  
+  .fstt-logo-subtitle,
+  .fstt-login-text {
+    display: none;
+  }
+  
+  .fstt-login-link {
+    padding: 8px;
+  }
+  
+  .fstt-login-icon {
+    margin-right: 0;
+  }
+}
+
+/* Adjust margins for ThemeToggle to work well with the language toggle */
+.theme-toggle-btn {
+  margin: 0;
 }

@@ -1,0 +1,302 @@
+.fstt-admin {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fstt-admin h1 {
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.fstt-admin-welcome {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.fstt-admin-welcome h2 {
+  margin-top: 0;
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.fstt-admin-welcome p {
+  margin-bottom: 0;
+  color: var(--text-secondary);
+}
+
+.fstt-admin-tabs {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.fstt-admin-tab-header {
+  display: flex;
+  background-color: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+  overflow-x: auto;
+}
+
+.fstt-admin-tab-btn {
+  padding: 1rem 1.5rem;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-weight: 500;
+  position: relative;
+  white-space: nowrap;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.fstt-admin-tab-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--accent-color);
+}
+
+.fstt-admin-tab-btn.active {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.fstt-admin-tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--accent-color);
+}
+
+.fstt-admin-tab-content {
+  padding: 1.5rem;
+}
+
+.fstt-admin-section {
+  margin-bottom: 2rem;
+}
+
+.fstt-admin-section h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+}
+
+.fstt-admin-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.fstt-admin-table-container {
+  margin-top: 1.5rem;
+}
+
+.fstt-admin-table-container h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.fstt-admin-table-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.fstt-admin-search {
+  flex: 1;
+  min-width: 200px;
+  max-width: 400px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+.fstt-admin-filter {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  min-width: 150px;
+}
+
+.fstt-admin-table {
+  width: 100%;
+}
+
+.fstt-admin-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-top: 1rem;
+}
+
+.fstt-admin-reports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.fstt-admin-report-card {
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.fstt-admin-report-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.fstt-admin-report-card h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.fstt-admin-report-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.fstt-admin-chart-preview {
+  margin-top: 1.5rem;
+}
+
+.fstt-admin-chart-placeholder {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-secondary);
+  border: 1px dashed var(--border-color);
+  border-radius: 8px;
+  color: var(--text-muted);
+}
+
+.fstt-admin-config-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.fstt-admin-config-card {
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.fstt-admin-config-card h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.fstt-admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fstt-admin-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.fstt-admin-form-group label {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.fstt-admin-form-group input,
+.fstt-admin-form-group select {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+.fstt-admin-db-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.fstt-admin-log-viewer {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  height: 150px;
+  overflow-y: auto;
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+}
+
+.fstt-admin-access-denied {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+  text-align: center;
+  color: var(--text-danger);
+}
+
+@media (max-width: 768px) {
+  .fstt-admin-tab-header {
+    padding: 0 0.5rem;
+  }
+  
+  .fstt-admin-tab-btn {
+    padding: 0.75rem;
+  }
+  
+  .fstt-admin-tab-content {
+    padding: 1rem;
+  }
+  
+  .fstt-admin-table-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .fstt-admin-search {
+    max-width: 100%;
+  }
+  
+  .fstt-admin-config-grid {
+    grid-template-columns: 1fr;
+  }
+}

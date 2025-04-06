@@ -1,9 +1,10 @@
 /* Footer styles based on FSTT's official website */
 .fstt-footer {
-  background-color: #00519b; /* Primary FST blue */
-  color: #fff;
+  background-color: var(--accent-color); /* Use theme accent color */
+  color: var(--button-primary-text); /* Text color that contrasts with accent */
   padding: 30px 0;
   margin-top: auto;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .fstt-footer-content {
@@ -17,7 +18,13 @@
 
 .fstt-footer-logo img {
   max-height: 60px;
+  /* Apply filter only in light mode, leave as is in dark mode */
   filter: brightness(0) invert(1); /* Make logo white */
+}
+
+[data-theme="dark"] .fstt-footer-logo img {
+  /* No filter needed in dark mode as logo is already visible on dark background */
+  filter: none;
 }
 
 .fstt-footer-info,

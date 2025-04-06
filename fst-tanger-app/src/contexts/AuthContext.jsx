@@ -57,53 +57,80 @@ export const AuthProvider = ({ children }) => {
    */
   const fetchUserData = async (userId, role) => {
     try {
-      let userData = null;
+      // First get basic person data
+      const personneData = await db.personnes.get(userId);
       
-      switch(role) {
-        case ROLES.CHEF_DEPARTEMENT:
-          userData = await db.chefDepartement.get(userId);
-          break;
-        case ROLES.ENSEIGNANT:
-          userData = await db.enseignants.get(userId);
-          break;
-        case ROLES.ETUDIANT:
-          userData = await db.etudiants.get(userId);
-          break;
-        case ROLES.TECHNICIEN:
-          userData = await db.techniciens.get(userId);
-          break;
-        case ROLES.COORDINATEUR:
-          userData = await db.coordinateurs.get(userId);
-          break;
-        case ROLES.CHEF_LABO:
-          userData = await db.chefDeLabo.get(userId);
-          break;
-        case ROLES.PERSONNEL:
-          userData = await db.personnels.get(userId);
-          break;
-        default:
-          console.error('Unknown role:', role);
-          break;
-      }
-      
-      if (userData) {
-        setCurrentUser({ ...userData, role });
-      } else {
+      if (!personneData) {
         console.error('User not found');
         setCurrentUser(null);
         localStorage.removeItem('auth_token');
+        return;
       }
+      
+      // Get role-specific data
+      let roleData = {};
+      
+      switch(role) {
+        case ROLES.CHEF_DEPARTEMENT: {
+          const chefData = await db.chefDepartement.get(userId);
+          if (chefData) roleData = chefData;
+          break;
+        }
+        case ROLES.ENSEIGNANT: {
+          const enseignantData = await db.enseignants.get(userId);
+          if (enseignantData) roleData = enseignantData;
+          break;
+        }
+        case ROLES.ETUDIANT: {
+          const etudiantData = await db.etudiants.get(userId);
+          if (etudiantData) roleData = etudiantData;
+          break;
+        }
+        case ROLES.TECHNICIEN: {
+          const technicienData = await db.techniciens.get(userId);
+          if (technicienData) roleData = technicienData;
+          break;
+        }
+        case ROLES.COORDINATEUR: {
+          const coordinateurData = await db.coordinateurs.get(userId);
+          if (coordinateurData) roleData = coordinateurData;
+          break;
+        }
+        case ROLES.CHEF_LABO: {
+          const chefLaboData = await db.chefDeLabo.get(userId);
+          if (chefLaboData) roleData = chefLaboData;
+          break;
+        }
+        case ROLES.PERSONNEL: {
+          const personnelData = await db.personnels.get(userId);
+          if (personnelData) roleData = personnelData;
+          break;
+        }
+        default:
+          break;
+      }
+      
+      setCurrentUser({ 
+        ...personneData,
+        ...roleData,
+        role 
+      });
     } catch (err) {
       console.error('Error fetching user data:', err);
+      setCurrentUser(null);
     }
   };
   
   /**
-   * Login function that authenticates the user and stores the JWT token
+   * Login function that authenticates the user with any password if the email exists
+   * @param {string} email - User email
+   * @param {string} password - Not checked in this implementation
+   * @returns {Object} Login result with success flag
    */
   const login = async (email, password) => {
     setError(null);
     try {
+      // Find person with the provided email
       const personnes = await db.personnes.where('email').equals(email).toArray();
       
       if (personnes.length === 0) {
@@ -111,69 +138,45 @@ export const AuthProvider = ({ children }) => {
       }
       
       const personne = personnes[0];
-      let role = null;
-      let roleData = {};
+      let role = ROLES.ADMIN; // Default role
       
-      // Check each role-specific table
-      const [
-        chefDepartement, 
-        enseignant, 
-        etudiant, 
-        technicien, 
-        coordinateur, 
-        chefLabo, 
-        personnel
-      ] = await Promise.all([
-        db.chefDepartement.get(personne.id),
-        db.enseignants.get(personne.id),
-        db.etudiants.get(personne.id),
-        db.techniciens.get(personne.id),
-        db.coordinateurs.get(personne.id),
-        db.chefDeLabo.get(personne.id),
-        db.personnels.get(personne.id)
-      ]);
-
-      if (chefDepartement) role = ROLES.CHEF_DEPARTEMENT;
-      else if (enseignant) {
+      // Check each role in priority order
+      const isChefDepartement = await db.chefDepartement.get(personne.id);
+      const isCoordinateur = await db.coordinateurs.get(personne.id);
+      const isChefLabo = await db.chefDeLabo.get(personne.id);
+      const isEnseignant = await db.enseignants.get(personne.id);
+      const isPersonnel = await db.personnels.get(personne.id);
+      const isTechnicien = await db.techniciens.get(personne.id);
+      const isEtudiant = await db.etudiants.get(personne.id);
+      
+      // Determine role based on checks (higher privilege roles have priority)
+      if (isChefDepartement) {
+        role = ROLES.CHEF_DEPARTEMENT;
+      } else if (isCoordinateur) {
+        role = ROLES.COORDINATEUR;
+      } else if (isChefLabo) {
+        role = ROLES.CHEF_LABO;
+      } else if (isEnseignant) {
         role = ROLES.ENSEIGNANT;
-        roleData = {
-          appogee: enseignant.appogee,
-          specialite: enseignant.specialite,
-          cours: enseignant.cours || []
-        };
-      }
-      else if (etudiant) {
-        role = ROLES.ETUDIANT;
-        roleData = {
-          appogee: etudiant.appogee,
-          prenom: etudiant.prenom,
-          dateNaissance: etudiant.dateNaissance,
-          adresse: etudiant.adresse
-        };
-      }
-      else if (technicien) {
-        role = ROLES.TECHNICIEN;
-        roleData = { specialite: technicien.specialite };
-      }
-      else if (coordinateur) role = ROLES.COORDINATEUR;
-      else if (chefLabo) role = ROLES.CHEF_LABO;
-      else if (personnel) {
+      } else if (isPersonnel) {
         role = ROLES.PERSONNEL;
-        roleData = { specialite: personnel.specialite };
+      } else if (isTechnicien) {
+        role = ROLES.TECHNICIEN;
+      } else if (isEtudiant) {
+        role = ROLES.ETUDIANT;
       }
-
-      setCurrentUser({
-        id: personne.id,
-        nom: personne.nom,
-        email: personne.email,
-        role,
-        ...roleData
-      });
       
-      return true;
+      // Generate token and store it
+      const token = createMockJwt(personne.id, role);
+      localStorage.setItem('auth_token', token);
+      
+      // Set current user with role
+      await fetchUserData(personne.id, role);
+      
+      return { success: true };
     } catch (err) {
       setError(err.message);
-      return false;
+      return { success: false, error: err.message };
     }
   };
   

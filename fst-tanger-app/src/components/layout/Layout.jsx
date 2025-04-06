@@ -1,36 +1,34 @@
-import { Outlet } from 'react-router-dom';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useState, useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import Footer from './Footer';
 import './Layout.css';
 
 /**
- * Layout component that provides the common structure for the application
- * Based on FSTT's official website design
+ * Main layout component
+ * Provides structure for the application with header, sidebar, and content area
  */
 const Layout = () => {
-  const { t } = useTranslation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const location = useLocation();
+  
+  // Close sidebar when location changes (navigation)
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [location.pathname]);
   
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
-
+  
   return (
     <div className="fstt-layout">
       <Header toggleSidebar={toggleSidebar} />
+      <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       
-      <div className="fstt-main-content">
-        <Sidebar isOpen={sidebarOpen} />
-        
-        <main className={`fstt-content ${sidebarOpen ? 'sidebar-open' : ''}`}>
-          <Outlet />
-        </main>
-      </div>
-      
-      <Footer />
+      <main className="fstt-main">
+        <Outlet />
+      </main>
     </div>
   );
 };

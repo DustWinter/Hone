@@ -12,7 +12,7 @@ const Footer = () => {
     <footer className="fstt-footer">
       <div className="fstt-footer-content">
         <div className="fstt-footer-logo">
-          <img src="/src/assets/image.png" alt="FST Tanger" />
+          <img src="/src/assets/fstt-logo.png" alt="FST Tanger" />
         </div>
         
         <div className="fstt-footer-info">

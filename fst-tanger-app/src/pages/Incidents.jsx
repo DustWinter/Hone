@@ -10,6 +10,8 @@ const Incidents = () => {
   
   const [incidents, setIncidents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filter, setFilter] = useState('all');
 
   useEffect(() => {
     const fetchIncidents = async () => {
@@ -19,13 +21,13 @@ const Incidents = () => {
         if (hasRole(ROLES.TECHNICIEN)) {
           // Technicians see only incidents assigned to them
           incidentsData = await db.incidentsTechniques
-            .where('technicienId')
+            .where('technicien_id')
             .equals(currentUser.id)
             .toArray();
         } else if (hasRole(ROLES.ENSEIGNANT)) {
           // Teachers see only incidents they reported
           incidentsData = await db.incidentsTechniques
-            .where('enseignantId')
+            .where('enseignant_id')
             .equals(currentUser.id)
             .toArray();
         } else {
@@ -44,16 +46,55 @@ const Incidents = () => {
     fetchIncidents();
   }, [currentUser, hasRole, ROLES]);
 
+  // Filter incidents based on search term and status
+  const filteredIncidents = incidents.filter(incident => {
+    const matchesSearch = 
+      incident.description.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    if (filter === 'all') {
+      return matchesSearch;
+    }
+    
+    return matchesSearch && incident.statut.toLowerCase() === filter;
+  });
+
   if (loading) {
     return <div className="fstt-loading">{t('common.loading')}</div>;
   }
 
   return (
     <div className="fstt-incidents">
-      <h1>{t('nav.incidents')}</h1>
+      <h1>{t('incidents.title')}</h1>
+      
+      <div className="fstt-incidents-controls">
+        <div className="fstt-search">
+          <input
+            type="text"
+            placeholder={t('common.search')}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        
+        <div className="fstt-filter">
+          <label htmlFor="status-filter">{t('incidents.status')}:</label>
+          <select 
+            id="status-filter" 
+            value={filter} 
+            onChange={(e) => setFilter(e.target.value)}
+          >
+            <option value="all">{t('common.all')}</option>
+            <option value="soumis">{t('incidents.statusPending')}</option>
+            <option value="assigné">{t('incidents.statusAssigned')}</option>
+            <option value="en cours">{t('incidents.statusInProgress')}</option>
+            <option value="résolu">{t('incidents.statusResolved')}</option>
+            <option value="clôturé">{t('incidents.statusClosed')}</option>
+          </select>
+        </div>
+      </div>
       
       <div className="fstt-incidents-list">
-        {incidents.length > 0 ? (
+        {filteredIncidents.length > 0 ? (
           <table className="fstt-table">
             <thead>
               <tr>
@@ -62,11 +103,11 @@ const Incidents = () => {
                 <th>{t('incidents.priority')}</th>
                 <th>{t('incidents.status')}</th>
                 <th>{t('incidents.date')}</th>
-                <th>{t('incidents.actions')}</th>
+                <th>{t('common.actions')}</th>
               </tr>
             </thead>
             <tbody>
-              {incidents.map(incident => (
+              {filteredIncidents.map(incident => (
                 <tr key={incident.id}>
                   <td>{incident.id}</td>
                   <td>{incident.description}</td>
@@ -76,7 +117,7 @@ const Incidents = () => {
                     </span>
                   </td>
                   <td>
-                    <span className={`fstt-badge status-${incident.statut.toLowerCase()}`}>
+                    <span className={`fstt-badge status-${incident.statut.toLowerCase().replace(' ', '-')}`}>
                       {incident.statut}
                     </span>
                   </td>
@@ -85,6 +126,11 @@ const Incidents = () => {
                     <button className="fstt-btn">
                       {t('common.view')}
                     </button>
+                    {hasRole(ROLES.TECHNICIEN) && incident.statut !== 'Résolu' && (
+                      <button className="fstt-btn fstt-btn-success">
+                        {t('incidents.resolution')}
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}
@@ -94,6 +140,14 @@ const Incidents = () => {
           <p className="fstt-empty">{t('common.noData')}</p>
         )}
       </div>
+      
+      {hasRole(ROLES.ENSEIGNANT) && (
+        <div className="fstt-incidents-actions">
+          <button className="fstt-btn fstt-btn-primary">
+            {t('incidents.reportIncident')}
+          </button>
+        </div>
+      )}
     </div>
   );
 };

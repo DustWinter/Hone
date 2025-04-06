@@ -1,115 +1,189 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../contexts/AuthContext';
-import db from '../../utils/db';
+import { Icons } from '../common/Icons';
 import './Sidebar.css';
 
 /**
  * Sidebar navigation component
- * Provides role-based menu items following FSTT design
+ * @param {Object} props Component props
+ * @param {Boolean} props.isOpen Whether sidebar is open
+ * @param {Function} props.closeSidebar Function to close sidebar
  */
-const Sidebar = ({ isOpen }) => {
+const Sidebar = ({ isOpen, closeSidebar }) => {
   const { t } = useTranslation();
-  const { currentUser, hasRole, ROLES } = useAuth();
+  const { currentUser, logout, hasRole, ROLES } = useAuth();
   
-  if (!currentUser) return null;
-
-  // Get department info safely
-  const department = db.département || {};
-
+  // Check if user has admin privileges
+  const isAdmin = currentUser && (
+    hasRole(ROLES.CHEF_DEPARTEMENT) || 
+    hasRole(ROLES.ADMIN) || 
+    hasRole(ROLES.COORDINATEUR)
+  );
+  
   return (
-    <aside className={`fstt-sidebar ${isOpen ? 'open' : ''}`}>
-      <div className="fstt-sidebar-header">
-        <h3>{t('department.title')}</h3>
-        <p>{currentUser.nom}</p>
-        <p className="fstt-role">{currentUser.role}</p>
-      </div>
+    <>
+      <div className={`fstt-sidebar-overlay ${isOpen ? 'open' : ''}`} onClick={closeSidebar} />
       
-      <nav className="fstt-sidebar-nav">
-        <ul>
-          <li>
-            <NavLink to="/dashboard" className={({ isActive }) => isActive ? 'active' : ''}>
-              {t('nav.dashboard')}
-            </NavLink>
-          </li>
-          
-          {/* Course management - available to all roles except students */}
-          {currentUser.role !== ROLES.ETUDIANT && (
-            <li>
-              <NavLink to="/courses" className={({ isActive }) => isActive ? 'active' : ''}>
-                {t('nav.courses')}
-              </NavLink>
-            </li>
-          )}
-          
-          {/* Student management - available to administrative roles and teachers */}
-          {(hasRole(ROLES.CHEF_DEPARTEMENT) || 
-            hasRole(ROLES.COORDINATEUR) || 
-            hasRole(ROLES.ENSEIGNANT)) && (
-            <li>
-              <NavLink to="/students" className={({ isActive }) => isActive ? 'active' : ''}>
-                {t('nav.students')}
-              </NavLink>
-            </li>
-          )}
-          
-          {/* Resources management - available to all */}
-          <li>
-            <NavLink to="/resources" className={({ isActive }) => isActive ? 'active' : ''}>
-              {t('nav.rooms')}
-            </NavLink>
-          </li>
-          
-          {/* Incidents - available to all */}
-          <li>
-            <NavLink to="/incidents" className={({ isActive }) => isActive ? 'active' : ''}>
-              {t('nav.incidents')}
-            </NavLink>
-          </li>
-          
-          {/* Schedule - available to all */}
-          <li>
-            <NavLink to="/schedule" className={({ isActive }) => isActive ? 'active' : ''}>
-              {t('nav.schedule')}
-            </NavLink>
-          </li>
-          
-          {/* Deliberations - available to administrative roles and teachers */}
-          {(hasRole(ROLES.CHEF_DEPARTEMENT) || 
-            hasRole(ROLES.COORDINATEUR) || 
-            hasRole(ROLES.ENSEIGNANT)) && (
-            <li>
-              <NavLink to="/deliberations" className={({ isActive }) => isActive ? 'active' : ''}>
-                {t('nav.deliberations')}
-              </NavLink>
-            </li>
-          )}
-          
-          {/* Internships - available to administrative roles, teachers, and students */}
-          <li>
-            <NavLink to="/internships" className={({ isActive }) => isActive ? 'active' : ''}>
-              {t('nav.internships')}
-            </NavLink>
-          </li>
-          
-          {/* Administration - only for administrative roles */}
-          {(hasRole(ROLES.CHEF_DEPARTEMENT) || hasRole(ROLES.COORDINATEUR)) && (
-            <li>
-              <NavLink to="/admin" className={({ isActive }) => isActive ? 'active' : ''}>
-                {t('nav.admin')}
-              </NavLink>
-            </li>
-          )}
-        </ul>
-      </nav>
-      
-      <div className="fstt-sidebar-footer">
-        <div className="fstt-department-info">
-          <p><strong>{t('department.chief')}:</strong> {department.chef || t('department.unknown')}</p>
-          <p><strong>{t('department.contact')}:</strong> {department.contact || t('department.unknown')}</p>
+      <nav className={`fstt-sidebar ${isOpen ? 'open' : ''}`}>
+        <div className="fstt-sidebar-header">
+          <h2 className="fstt-app-name">{t('department.title')}</h2>
+          <button 
+            className="fstt-sidebar-close" 
+            onClick={closeSidebar}
+            aria-label="Close menu"
+          >
+            <Icons.X />
+          </button>
         </div>
-      </div>
-    </aside>
+        
+        <div className="fstt-sidebar-content">
+          <div className="fstt-nav">
+            <NavLink 
+              to="/" 
+              className="fstt-nav-item" 
+              onClick={closeSidebar} 
+              end
+            >
+              <span className="fstt-nav-icon"><Icons.Home /></span>
+              {t('nav.home')}
+            </NavLink>
+            
+            {currentUser && (
+              <NavLink 
+                to="/dashboard" 
+                className="fstt-nav-item" 
+                onClick={closeSidebar}
+              >
+                <span className="fstt-nav-icon"><Icons.BarChart /></span>
+                {t('nav.dashboard')}
+              </NavLink>
+            )}
+            
+            <div className="fstt-nav-category">{t('nav.teaching')}</div>
+            
+            <NavLink 
+              to="/courses" 
+              className="fstt-nav-item" 
+              onClick={closeSidebar}
+            >
+              <span className="fstt-nav-icon"><Icons.Book /></span>
+              {t('nav.courses')}
+            </NavLink>
+            
+            <NavLink 
+              to="/students" 
+              className="fstt-nav-item" 
+              onClick={closeSidebar}
+            >
+              <span className="fstt-nav-icon"><Icons.Users /></span>
+              {t('nav.students')}
+            </NavLink>
+            
+            <NavLink 
+              to="/deliberations" 
+              className="fstt-nav-item" 
+              onClick={closeSidebar}
+            >
+              <span className="fstt-nav-icon"><Icons.CheckSquare /></span>
+              {t('nav.deliberations')}
+            </NavLink>
+            
+            <div className="fstt-nav-category">{t('nav.management')}</div>
+            
+            <NavLink 
+              to="/resources" 
+              className="fstt-nav-item" 
+              onClick={closeSidebar}
+            >
+              <span className="fstt-nav-icon"><Icons.Monitor /></span>
+              {t('nav.resources')}
+            </NavLink>
+            
+            <NavLink 
+              to="/incidents" 
+              className="fstt-nav-item" 
+              onClick={closeSidebar}
+            >
+              <span className="fstt-nav-icon"><Icons.AlertTriangle /></span>
+              {t('nav.incidents')}
+              {hasRole(ROLES.TECHNICIEN) && <span className="fstt-nav-badge">3</span>}
+            </NavLink>
+            
+            {/* Admin-only sections */}
+            {isAdmin && (
+              <>
+                <div className="fstt-nav-category">{t('nav.admin')}</div>
+                
+                <NavLink 
+                  to="/administration" 
+                  className="fstt-nav-item" 
+                  onClick={closeSidebar}
+                >
+                  <span className="fstt-nav-icon"><Icons.Settings /></span>
+                  {t('nav.admin')}
+                </NavLink>
+                
+                <NavLink 
+                  to="/users" 
+                  className="fstt-nav-item" 
+                  onClick={closeSidebar}
+                >
+                  <span className="fstt-nav-icon"><Icons.UserPlus /></span>
+                  {t('nav.users')}
+                </NavLink>
+              </>
+            )}
+          </div>
+        </div>
+        
+        <div className="fstt-sidebar-footer">
+          {currentUser ? (
+            <>
+              <div className="fstt-user-info">
+                <span className="fstt-user-name">{currentUser.nom}</span>
+                <span className="fstt-user-role">{currentUser.role}</span>
+              </div>
+              <div className="fstt-user-actions">
+                <Link 
+                  to="/profile" 
+                  className="fstt-btn fstt-btn-secondary" 
+                  onClick={closeSidebar}
+                >
+                  {t('nav.profile')}
+                </Link>
+                <Link 
+                  to="/settings" 
+                  className="fstt-btn" 
+                  onClick={closeSidebar}
+                >
+                  {t('nav.settings')}
+                </Link>
+              </div>
+              <button 
+                onClick={() => {
+                  logout();
+                  closeSidebar();
+                }} 
+                className="fstt-logout-btn"
+              >
+                <span className="fstt-btn-icon"><Icons.LogOut /></span>
+                {t('nav.logout')}
+              </button>
+            </>
+          ) : (
+            <Link 
+              to="/login" 
+              className="fstt-login-btn" 
+              onClick={closeSidebar}
+            >
+              <span className="fstt-btn-icon"><Icons.LogIn /></span>
+              {t('nav.login')}
+            </Link>
+          )}
+        </div>
+      </nav>
+    </>
   );
 };
 

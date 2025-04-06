@@ -32,10 +32,18 @@ export class SalleCoursLabo {
     };
   }
 
+  /**
+   * Check if the room is available
+   * @returns {Boolean} True if the room is available, false otherwise
+   */
   verifierDisponibilite() {
     return this.disponibilite;
   }
 
+  /**
+   * Reserve the room if available
+   * @returns {Boolean} True if reservation was successful, false otherwise
+   */
   reserver() {
     if (this.disponibilite) {
       this.disponibilite = false;
@@ -43,19 +51,29 @@ export class SalleCoursLabo {
     }
     return false;
   }
+
+  /**
+   * Release the room's reservation
+   * @returns {Boolean} True if the room was released successfully
+   */
+  liberer() {
+    this.disponibilite = true;
+    return true;
+  }
 }
 
 /**
  * Class representing a DemandeRéservation entity
  */
 export class DemandeReservation {
-  constructor(id, dateDemande, dateReservation, statut, enseignantId, salleId) {
+  constructor(id, dateDemande, dateReservation, statut, enseignant_id, salle_id, administration_id = null) {
     this.id = id;
     this.dateDemande = dateDemande;
     this.dateReservation = dateReservation;
     this.statut = statut;
-    this.enseignantId = enseignantId;
-    this.salleId = salleId;
+    this.enseignant_id = enseignant_id;
+    this.salle_id = salle_id;
+    this.administration_id = administration_id;
   }
 
   static fromDb(demandeDb) {
@@ -64,8 +82,9 @@ export class DemandeReservation {
       demandeDb.dateDemande,
       demandeDb.dateReservation,
       demandeDb.statut,
-      demandeDb.enseignantId,
-      demandeDb.salleId
+      demandeDb.enseignant_id,
+      demandeDb.salle_id,
+      demandeDb.administration_id
     );
   }
 
@@ -75,17 +94,30 @@ export class DemandeReservation {
       dateDemande: this.dateDemande,
       dateReservation: this.dateReservation,
       statut: this.statut,
-      enseignantId: this.enseignantId,
-      salleId: this.salleId
+      enseignant_id: this.enseignant_id,
+      salle_id: this.salle_id,
+      administration_id: this.administration_id
     };
   }
 
+  /**
+   * Get the current status of the reservation request
+   * @returns {String} Current status of the reservation request
+   */
   getStatut() {
     return this.statut;
   }
 
+  /**
+   * Update the status of the reservation request
+   * @param {String} statut - New status (En attente, Acceptée, Refusée)
+   */
   setStatut(statut) {
-    this.statut = statut;
+    if (['En attente', 'Acceptée', 'Refusée'].includes(statut)) {
+      this.statut = statut;
+    } else {
+      throw new Error('Statut invalide. Les valeurs acceptées sont: En attente, Acceptée, Refusée');
+    }
   }
 }
 
@@ -93,14 +125,15 @@ export class DemandeReservation {
  * Class representing an IncidentTechnique entity
  */
 export class IncidentTechnique {
-  constructor(id, description, dateSoumission, statut, priorite, enseignantId, technicienId = null) {
+  constructor(id, description, dateSoumission, statut, priorite, enseignant_id, technicien_id = null, administration_id = null) {
     this.id = id;
     this.description = description;
     this.dateSoumission = dateSoumission;
     this.statut = statut;
     this.priorite = priorite;
-    this.enseignantId = enseignantId;
-    this.technicienId = technicienId;
+    this.enseignant_id = enseignant_id;
+    this.technicien_id = technicien_id;
+    this.administration_id = administration_id;
   }
 
   static fromDb(incidentDb) {
@@ -110,8 +143,9 @@ export class IncidentTechnique {
       incidentDb.dateSoumission,
       incidentDb.statut,
       incidentDb.priorite,
-      incidentDb.enseignantId,
-      incidentDb.technicienId
+      incidentDb.enseignant_id,
+      incidentDb.technicien_id,
+      incidentDb.administration_id
     );
   }
 
@@ -122,17 +156,42 @@ export class IncidentTechnique {
       dateSoumission: this.dateSoumission,
       statut: this.statut,
       priorite: this.priorite,
-      enseignantId: this.enseignantId,
-      technicienId: this.technicienId
+      enseignant_id: this.enseignant_id,
+      technicien_id: this.technicien_id,
+      administration_id: this.administration_id
     };
   }
 
+  /**
+   * Get the current status of the incident
+   * @returns {String} Current status of the incident
+   */
   getStatut() {
     return this.statut;
   }
 
+  /**
+   * Update the status of the incident
+   * @param {String} statut - New status (Soumis, Assigné, En cours, Résolu, Fermé)
+   */
   setStatut(statut) {
-    this.statut = statut;
+    const statusOptions = ['Soumis', 'Assigné', 'En cours', 'Résolu', 'Fermé'];
+    if (statusOptions.includes(statut)) {
+      this.statut = statut;
+    } else {
+      throw new Error(`Statut invalide. Les valeurs acceptées sont: ${statusOptions.join(', ')}`);
+    }
+  }
+  
+  /**
+   * Assign a technician to the incident
+   * @param {Number} technicienId - ID of the technician
+   * @returns {Object} Updated incident data
+   */
+  assignerTechnicien(technicienId) {
+    this.technicien_id = technicienId;
+    this.statut = 'Assigné';
+    return this;
   }
 }
 
@@ -164,11 +223,12 @@ export class Laboratoire {
  * Class representing a Projet entity
  */
 export class Projet {
-  constructor(id, nom, personnel, encadrant) {
+  constructor(id, nom, personnel, encadrant, chef_labo_id) {
     this.id = id;
     this.nom = nom;
     this.personnel = personnel;
     this.encadrant = encadrant;
+    this.chef_labo_id = chef_labo_id;
   }
 
   static fromDb(projetDb) {
@@ -176,7 +236,8 @@ export class Projet {
       projetDb.id,
       projetDb.nom,
       projetDb.personnel,
-      projetDb.encadrant
+      projetDb.encadrant,
+      projetDb.chef_labo_id
     );
   }
 
@@ -185,7 +246,21 @@ export class Projet {
       id: this.id,
       nom: this.nom,
       personnel: this.personnel,
-      encadrant: this.encadrant
+      encadrant: this.encadrant,
+      chef_labo_id: this.chef_labo_id
+    };
+  }
+  
+  /**
+   * Add personnel to the project
+   * @param {Number} personnelId - ID of the personnel to add
+   * @returns {Object} Personnel assignment record
+   */
+  ajouterPersonnel(personnelId) {
+    return {
+      projet_id: this.id,
+      personnel_id: personnelId,
+      date_ajout: new Date()
     };
   }
 }
@@ -194,12 +269,12 @@ export class Projet {
  * Class representing a Matériel entity
  */
 export class Materiel {
-  constructor(id, nom, type, quantite, laboratoireId) {
+  constructor(id, nom, type, quantite, chef_labo_id) {
     this.id = id;
     this.nom = nom;
     this.type = type;
     this.quantite = quantite;
-    this.laboratoireId = laboratoireId;
+    this.chef_labo_id = chef_labo_id;
   }
 
   static fromDb(materielDb) {
@@ -208,7 +283,7 @@ export class Materiel {
       materielDb.nom,
       materielDb.type,
       materielDb.quantite,
-      materielDb.laboratoireId
+      materielDb.chef_labo_id
     );
   }
 
@@ -218,7 +293,20 @@ export class Materiel {
       nom: this.nom,
       type: this.type,
       quantite: this.quantite,
-      laboratoireId: this.laboratoireId
+      chef_labo_id: this.chef_labo_id
     };
+  }
+  
+  /**
+   * Update the quantity of equipment
+   * @param {Number} nouvelleQuantite - New quantity value
+   * @returns {Boolean} True if the update was successful
+   */
+  mettreAJourQuantite(nouvelleQuantite) {
+    if (nouvelleQuantite >= 0) {
+      this.quantite = nouvelleQuantite;
+      return true;
+    }
+    return false;
   }
 }
