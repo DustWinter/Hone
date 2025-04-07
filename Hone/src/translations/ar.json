@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "dashboard": "لوحة التحكم",
+    "courses": "الدورات",
+    "students": "الطلاب",
+    "deliberations": "المداولات",
+    "resources": "الموارد",
+    "incidents": "الحوادث",
+    "internships": "التدريبات",
+    "evaluations": "التقييمات",
+    "admin": "الإدارة",
+    "users": "المستخدمون",
+    "profile": "الملف الشخصي",
+    "settings": "الإعدادات",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "laboratoire": "المختبر"
+  },
+  "labo": {
+    "title": "المختبر",
+    "welcome": "مرحبًا بك في المختبر",
+    "welcomeMessage": "إدارة المشاريع، والمواعيد، والمعدات المخبرية.",
+    "newProject": "مشروع جديد",
+    "newTimeSlot": "موعد جديد",
+    "manageMaterials": "إدارة المعدات",
+    "projects": "المشاريع",
+    "allProjects": "جميع المشاريع",
+    "ongoingProjects": "قيد التنفيذ",
+    "finishedProjects": "مكتملة",
+    "droppedProjects": "ملغاة",
+    "noProjects": "لم يتم العثور على مشاريع",
+    "status": {
+      "ongoing": "قيد التنفيذ",
+      "finished": "مكتمل",
+      "dropped": "ملغى"
+    },
+    "startDate": "تاريخ البدء",
+    "endDate": "تاريخ الانتهاء",
+    "participants": "المشاركون",
+    "timeSlots": "المواعيد",
+    "date": "التاريخ",
+    "time": "الوقت",
+    "lab": "المختبر",
+    "status": "الحالة",
+    "actions": "الإجراءات",
+    "noTimeSlots": "لا توجد مواعيد متاحة",
+    "booked": "محجوز",
+    "available": "متاح",
+    "requestTimeSlot": "طلب حجز",
+    "confirmDeleteProject": "هل أنت متأكد أنك تريد حذف هذا المشروع؟",
+    "confirmDeleteTimeSlot": "هل أنت متأكد أنك تريد حذف هذا الموعد؟"
+  },
+  "common": {
+    "edit": "تعديل",
+    "delete": "حذف"
+  }
+}

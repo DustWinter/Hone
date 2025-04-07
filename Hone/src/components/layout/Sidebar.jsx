@@ -119,10 +119,12 @@ const Sidebar = ({ isOpen, closeSidebar }) => {
                 onClick={handleClose}
               >
                 <span className="fstt-nav-icon">
-                  {/* Use a character icon as fallback */}
-                  🔬
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 3h6v1l3 7v11H6V11l3-7z"></path>
+                    <path d="M3 15h18"></path>
+                  </svg>
                 </span>
-                {t('Laboratoire')}
+                {t('nav.laboratoire')}
               </NavLink>
             )}
             

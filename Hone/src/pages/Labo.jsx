@@ -69,7 +69,7 @@ const Labo = () => {
   };
   
   const handleDeleteProject = (projectId) => {
-    if (window.confirm(t('labo.confirmDeleteProject'))) {
+    if (window.confirm(t('labo.confirmDeleteProject', 'Êtes-vous sûr de vouloir supprimer ce projet ?'))) {
       setProjects(projects.filter(project => project.id !== projectId));
     }
   };
@@ -85,7 +85,7 @@ const Labo = () => {
   };
   
   const handleDeleteTimeSlot = (timeSlotId) => {
-    if (window.confirm(t('labo.confirmDeleteTimeSlot'))) {
+    if (window.confirm(t('labo.confirmDeleteTimeSlot', 'Êtes-vous sûr de vouloir supprimer ce créneau ?'))) {
       setTimeSlots(timeSlots.filter(timeSlot => timeSlot.id !== timeSlotId));
     }
   };
@@ -105,25 +105,38 @@ const Labo = () => {
   
   return (
     <div className="fstt-labo ns">
-      <h1>{t('labo.title')}</h1>
+      <h1>{t('labo.title', 'Laboratoire')}</h1>
       
       {/* Welcome Section */}
       <div className="fstt-labo-welcome">
-        <h2>{t('labo.welcome')}</h2>
-        <p>{t('labo.welcomeMessage')}</p>
+        <h2>{t('labo.welcome', 'Bienvenue au Laboratoire')}</h2>
+        <p>{t('labo.welcomeMessage', 'Gérez les projets, les créneaux horaires et les équipements du laboratoire.')}</p>
       </div>
       
       {/* Quick Actions */}
       {isChefLabo && (
         <div className="fstt-labo-quick-actions">
           <button className="fstt-btn fstt-btn-primary" onClick={handleCreateProject}>
-            ➕ {t('labo.newProject')}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg> 
+            {t('labo.newProject', 'Nouveau Projet')}
           </button>
           <button className="fstt-btn fstt-btn-secondary" onClick={handleCreateTimeSlot}>
-            📅 {t('labo.newTimeSlot')}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            {t('labo.newTimeSlot', 'Nouveau Créneau')}
           </button>
           <button className="fstt-btn fstt-btn-accent" onClick={handleManageMaterials}>
-            🔧 {t('labo.manageMaterials')}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+            </svg>
+            {t('labo.manageMaterials', 'Gérer les Équipements')}
           </button>
         </div>
       )}
@@ -131,55 +144,59 @@ const Labo = () => {
       {/* Projects Section */}
       <div className="fstt-labo-section">
         <div className="fstt-labo-section-header">
-          <h2>{t('labo.projects')}</h2>
+          <h2>{t('labo.projects', 'Projets')}</h2>
           <div className="fstt-labo-filters">
             <button 
               className={`fstt-labo-filter ${projectFilter === 'all' ? 'active' : ''}`}
               onClick={() => setProjectFilter('all')}
             >
-              {t('labo.allProjects')}
+              {t('labo.allProjects', 'Tous les Projets')}
             </button>
             <button 
               className={`fstt-labo-filter ${projectFilter === 'ongoing' ? 'active' : ''}`}
               onClick={() => setProjectFilter('ongoing')}
             >
-              {t('labo.ongoingProjects')}
+              {t('labo.ongoingProjects', 'En Cours')}
             </button>
             <button 
               className={`fstt-labo-filter ${projectFilter === 'finished' ? 'active' : ''}`}
               onClick={() => setProjectFilter('finished')}
             >
-              {t('labo.finishedProjects')}
+              {t('labo.finishedProjects', 'Terminés')}
             </button>
             <button 
               className={`fstt-labo-filter ${projectFilter === 'dropped' ? 'active' : ''}`}
               onClick={() => setProjectFilter('dropped')}
             >
-              {t('labo.droppedProjects')}
+              {t('labo.droppedProjects', 'Abandonnés')}
             </button>
           </div>
         </div>
         
         <div className="fstt-labo-projects">
           {filteredProjects.length === 0 ? (
-            <div className="fstt-labo-empty">{t('labo.noProjects')}</div>
+            <div className="fstt-labo-empty">{t('labo.noProjects', 'Aucun projet trouvé')}</div>
           ) : (
             filteredProjects.map(project => (
               <div key={project.id} className="fstt-labo-project-card">
                 <div className="fstt-labo-project-header">
                   <h3>{project.name}</h3>
                   <span className={`fstt-labo-status fstt-labo-status-${project.status}`}>
-                    {t(`labo.status.${project.status}`)}
+                    {t(`labo.status.${project.status}`, 
+                      project.status === 'ongoing' ? 'En cours' : 
+                      project.status === 'finished' ? 'Terminé' : 
+                      project.status === 'dropped' ? 'Abandonné' : project.status
+                    )}
                   </span>
                 </div>
                 <p className="fstt-labo-project-description">{project.description}</p>
                 <div className="fstt-labo-project-details">
                   <div className="fstt-labo-project-dates">
-                    <div><strong>{t('labo.startDate')}:</strong> {project.startDate}</div>
-                    <div><strong>{t('labo.endDate')}:</strong> {project.endDate}</div>
+                    <div><strong>{t('labo.startDate', 'Date de début')}:</strong> {project.startDate}</div>
+                    <div><strong>{t('labo.endDate', 'Date de fin')}:</strong> {project.endDate}</div>
                   </div>
                   <div className="fstt-labo-project-participants">
-                    <strong>{t('labo.participants')}:</strong>
+                    <strong>{t('labo.participants', 'Participants')}:</strong>
                     <ul>
                       {project.participants.map((participant, index) => (
                         <li key={index}>{participant}</li>
@@ -190,10 +207,20 @@ const Labo = () => {
                 {isChefLabo && (
                   <div className="fstt-labo-project-actions">
                     <button className="fstt-btn fstt-btn-text" onClick={() => handleEditProject(project)}>
-                      ✏️ {t('common.edit')}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                      </svg>
+                      {t('common.edit', 'Modifier')}
                     </button>
                     <button className="fstt-btn fstt-btn-text fstt-btn-danger" onClick={() => handleDeleteProject(project.id)}>
-                      🗑️ {t('common.delete')}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                      </svg>
+                      {t('common.delete', 'Supprimer')}
                     </button>
                   </div>
                 )}
@@ -205,19 +232,19 @@ const Labo = () => {
       
       {/* Time Slots Section */}
       <div className="fstt-labo-section">
-        <h2>{t('labo.timeSlots')}</h2>
+        <h2>{t('labo.timeSlots', 'Créneaux Horaires')}</h2>
         <div className="fstt-labo-time-slots">
           {timeSlots.length === 0 ? (
-            <div className="fstt-labo-empty">{t('labo.noTimeSlots')}</div>
+            <div className="fstt-labo-empty">{t('labo.noTimeSlots', 'Aucun créneau disponible')}</div>
           ) : (
             <table className="fstt-labo-table">
               <thead>
                 <tr>
-                  <th>{t('labo.date')}</th>
-                  <th>{t('labo.time')}</th>
-                  <th>{t('labo.lab')}</th>
-                  <th>{t('labo.status')}</th>
-                  <th>{t('labo.actions')}</th>
+                  <th>{t('labo.date', 'Date')}</th>
+                  <th>{t('labo.time', 'Heure')}</th>
+                  <th>{t('labo.lab', 'Laboratoire')}</th>
+                  <th>{t('labo.status', 'Statut')}</th>
+                  <th>{t('labo.actions', 'Actions')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -229,11 +256,11 @@ const Labo = () => {
                     <td>
                       {slot.bookedBy ? (
                         <span className="fstt-labo-status fstt-labo-status-booked">
-                          {t('labo.booked')} ({slot.project})
+                          {t('labo.booked', 'Réservé')} ({slot.project})
                         </span>
                       ) : (
                         <span className="fstt-labo-status fstt-labo-status-available">
-                          {t('labo.available')}
+                          {t('labo.available', 'Disponible')}
                         </span>
                       )}
                     </td>
@@ -241,16 +268,32 @@ const Labo = () => {
                       {isChefLabo ? (
                         <>
                           <button className="fstt-btn fstt-btn-text" onClick={() => handleEditTimeSlot(slot)}>
-                            ✏️ {t('common.edit')}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                            {t('common.edit', 'Modifier')}
                           </button>
                           <button className="fstt-btn fstt-btn-text fstt-btn-danger" onClick={() => handleDeleteTimeSlot(slot.id)}>
-                            🗑️ {t('common.delete')}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <polyline points="3 6 5 6 21 6"></polyline>
+                              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                              <line x1="10" y1="11" x2="10" y2="17"></line>
+                              <line x1="14" y1="11" x2="14" y2="17"></line>
+                            </svg>
+                            {t('common.delete', 'Supprimer')}
                           </button>
                         </>
                       ) : (
                         !slot.bookedBy && (
                           <button className="fstt-btn fstt-btn-text" onClick={() => handleRequestTimeSlot(slot)}>
-                            📅 {t('labo.requestTimeSlot')}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                              <line x1="16" y1="2" x2="16" y2="6"></line>
+                              <line x1="8" y1="2" x2="8" y2="6"></line>
+                              <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            {t('labo.requestTimeSlot', 'Demander Réservation')}
                           </button>
                         )
                       )}
@@ -264,7 +307,6 @@ const Labo = () => {
       </div>
       
       {/* Modals would be implemented here */}
-      
     </div>
   );
 };

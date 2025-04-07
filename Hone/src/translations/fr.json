@@ -1,0 +1,78 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "dashboard": "Tableau de bord",
+    "courses": "Cours",
+    "students": "Étudiants",
+    "deliberations": "Délibérations",
+    "resources": "Ressources",
+    "incidents": "Incidents",
+    "internships": "Stages",
+    "evaluations": "Évaluations",
+    "admin": "Administration",
+    "users": "Utilisateurs",
+    "profile": "Profil",
+    "settings": "Paramètres",
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "laboratoire": "Laboratoire"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "noData": "Aucune donnée disponible",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "initializing": "Initialisation de l'application"
+  },
+  "dashboard": {
+    "welcome": "Bienvenue, {{name}}",
+    "role": "Rôle",
+    "courses": {
+      "title": "Cours assignés"
+    },
+    "resources": {
+      "reservations": "Réservations en attente"
+    },
+    "students": {
+      "grades": "Notes récentes",
+      "absences": "Absences"
+    },
+    "incidents": {
+      "title": "Incidents assignés"
+    }
+  },
+  "labo": {
+    "title": "Laboratoire",
+    "welcome": "Bienvenue au Laboratoire",
+    "welcomeMessage": "Gérez les projets, les créneaux horaires et les équipements du laboratoire.",
+    "newProject": "Nouveau Projet",
+    "newTimeSlot": "Nouveau Créneau",
+    "manageMaterials": "Gérer les Équipements",
+    "projects": "Projets",
+    "allProjects": "Tous les Projets",
+    "ongoingProjects": "En Cours",
+    "finishedProjects": "Terminés",
+    "droppedProjects": "Abandonnés",
+    "noProjects": "Aucun projet trouvé",
+    "status": {
+      "ongoing": "En cours",
+      "finished": "Terminé",
+      "dropped": "Abandonné"
+    },
+    "startDate": "Date de début",
+    "endDate": "Date de fin",
+    "participants": "Participants",
+    "timeSlots": "Créneaux Horaires",
+    "date": "Date",
+    "time": "Heure",
+    "lab": "Laboratoire",
+    "status": "Statut",
+    "actions": "Actions",
+    "noTimeSlots": "Aucun créneau disponible",
+    "booked": "Réservé",
+    "available": "Disponible",
+    "requestTimeSlot": "Demander Réservation",
+    "confirmDeleteProject": "Êtes-vous sûr de vouloir supprimer ce projet ?",
+    "confirmDeleteTimeSlot": "Êtes-vous sûr de vouloir supprimer ce créneau ?"
+  }
+}
