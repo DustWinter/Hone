@@ -1,0 +1,335 @@
+/* Laboratory styles based on Dashboard design system */
+.fstt-labo {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fstt-labo h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  color: var(--text-primary);
+}
+
+.ns {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+  }
+.fstt-labo-welcome {
+  background-color: var(--card-bg);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--card-border);
+  transition: all var(--transition-speed) ease;
+}
+
+.fstt-labo-welcome h2 {
+  margin-top: 0;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.fstt-labo-welcome p {
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+
+.fstt-labo-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.fstt-labo-quick-actions button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.fstt-labo-section {
+  margin-bottom: 2rem;
+}
+
+.fstt-labo-section h2 {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+}
+
+.fstt-labo-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.fstt-labo-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.fstt-labo-filter {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-secondary);
+}
+
+.fstt-labo-filter:hover {
+  background: var(--bg-hover);
+}
+
+.fstt-labo-filter.active {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary-light);
+  font-weight: 500;
+}
+
+.fstt-labo-projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.fstt-labo-project-card {
+  background-color: var(--bg-primary);
+  border-radius: 10px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.fstt-labo-project-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.fstt-labo-project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.fstt-labo-project-header h3 {
+  margin: 0;
+  color: var(--primary);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.fstt-labo-status {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.fstt-labo-status-ongoing {
+  background-color: rgba(var(--success-rgb), 0.15);
+  color: var(--success);
+}
+
+.fstt-labo-status-finished {
+  background-color: rgba(var(--info-rgb), 0.15);
+  color: var(--info);
+}
+
+.fstt-labo-status-dropped {
+  background-color: rgba(var(--danger-rgb), 0.15);
+  color: var(--danger);
+}
+
+.fstt-labo-status-booked {
+  background-color: rgba(var(--warning-rgb), 0.15);
+  color: var(--warning);
+}
+
+.fstt-labo-status-available {
+  background-color: rgba(var(--success-rgb), 0.15);
+  color: var(--success);
+}
+
+.fstt-labo-project-description {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.fstt-labo-project-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+.fstt-labo-project-dates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.fstt-labo-project-participants ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.fstt-labo-project-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.75rem;
+}
+
+.fstt-labo-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.fstt-labo-table th,
+.fstt-labo-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.fstt-labo-table th {
+  font-weight: 600;
+  color: var(--text-primary);
+  background-color: var(--bg-secondary);
+}
+
+.fstt-labo-table tr:hover {
+  background-color: var(--bg-hover);
+}
+
+.fstt-labo-table tr.booked {
+  background-color: rgba(var(--warning-rgb), 0.05);
+}
+
+.fstt-labo-table tr.available {
+  background-color: rgba(var(--success-rgb), 0.05);
+}
+
+.fstt-labo-empty {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 2rem;
+  border: 1px dashed var(--border-color);
+  border-radius: 0.5rem;
+  background-color: var(--bg-secondary);
+}
+
+/* Button styles for Labo page */
+.fstt-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.fstt-btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.fstt-btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.fstt-btn-secondary {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.fstt-btn-secondary:hover {
+  background-color: var(--secondary-dark);
+}
+
+.fstt-btn-accent {
+  background-color: var(--accent);
+  color: white;
+}
+
+.fstt-btn-accent:hover {
+  background-color: var(--accent-dark);
+}
+
+.fstt-btn-text {
+  background-color: transparent;
+  color: var(--primary);
+  padding: 0.25rem 0.5rem;
+}
+
+.fstt-btn-text:hover {
+  background-color: var(--bg-hover);
+}
+
+.fstt-btn-danger {
+  color: var(--danger);
+}
+
+.fstt-btn-danger:hover {
+  background-color: rgba(var(--danger-rgb), 0.1);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .fstt-labo-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .fstt-labo-projects {
+    grid-template-columns: 1fr;
+  }
+  
+  .fstt-labo-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+/* Dark mode enhancements */
+[data-theme="dark"] .fstt-labo-project-card {
+  background-color: var(--bg-primary);
+}
+
+[data-theme="dark"] .fstt-labo-status-ongoing {
+  background-color: rgba(var(--success-rgb), 0.2);
+}
+
+[data-theme="dark"] .fstt-labo-status-finished {
+  background-color: rgba(var(--info-rgb), 0.2);
+}
+
+[data-theme="dark"] .fstt-labo-status-dropped {
+  background-color: rgba(var(--danger-rgb), 0.2);
+}

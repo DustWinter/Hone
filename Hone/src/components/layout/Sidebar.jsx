@@ -30,6 +30,14 @@ const Sidebar = ({ isOpen, closeSidebar }) => {
     hasRole(ROLES.ADMIN) || 
     hasRole(ROLES.COORDINATEUR)
   );
+
+  // Check if user has laboratory access
+  const hasLaboAccess = currentUser && (
+    hasRole(ROLES.ADMIN) || 
+    hasRole(ROLES.CHEF_DEPARTEMENT) || 
+    hasRole(ROLES.CHEF_LABO) || 
+    hasRole(ROLES.PERSONNEL)
+  );
   
   return (
     <>
@@ -103,6 +111,20 @@ const Sidebar = ({ isOpen, closeSidebar }) => {
               <span className="fstt-nav-icon"><Icons.Monitor /></span>
               {t('nav.resources')}
             </NavLink>
+            
+            {hasLaboAccess && (
+              <NavLink 
+                to="/laboratoire" 
+                className="fstt-nav-item" 
+                onClick={handleClose}
+              >
+                <span className="fstt-nav-icon">
+                  {/* Use a character icon as fallback */}
+                  🔬
+                </span>
+                {t('Laboratoire')}
+              </NavLink>
+            )}
             
             <NavLink 
               to="/incidents" 

@@ -19,6 +19,7 @@ import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import Evaluations from './pages/Evaluations';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import Labo from './pages/Labo';
 
 import './App.css';
 
@@ -102,6 +103,11 @@ function App() {
               <Route path="resources" element={
                 <ProtectedRoute>
                   <Resources />
+                </ProtectedRoute>
+              } />
+              <Route path="laboratoire" element={
+                <ProtectedRoute>
+                  <Labo />
                 </ProtectedRoute>
               } />
               <Route path="incidents" element={
