@@ -300,6 +300,140 @@
   background-color: rgba(var(--danger-rgb), 0.1);
 }
 
+/* Modal styles */
+.fstt-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.fstt-modal-container {
+  background-color: var(--bg-primary);
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+}
+
+.fstt-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.fstt-modal-header h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+}
+
+.fstt-modal-close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.fstt-modal-close:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+/* Form styles */
+.fstt-form {
+  padding: 1.5rem;
+}
+
+.fstt-form-group {
+  margin-bottom: 1.25rem;
+}
+
+.fstt-form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.fstt-form-row .fstt-form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.fstt-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.fstt-form input,
+.fstt-form textarea,
+.fstt-form select {
+  width: 100%;
+  padding: 0.625rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease;
+}
+
+.fstt-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.fstt-form input:focus,
+.fstt-form textarea:focus,
+.fstt-form select:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.2);
+}
+
+.fstt-input-error {
+  border-color: var(--danger) !important;
+}
+
+.fstt-error-message {
+  color: var(--danger);
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.fstt-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+/* RTL support for forms */
+[dir="rtl"] .fstt-form-actions {
+  flex-direction: row-reverse;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .fstt-labo-section-header {
@@ -314,6 +448,11 @@
   .fstt-labo-table {
     display: block;
     overflow-x: auto;
+  }
+  
+  .fstt-form-row {
+    flex-direction: column;
+    gap: 1.25rem;
   }
 }
 
@@ -332,4 +471,11 @@
 
 [data-theme="dark"] .fstt-labo-status-dropped {
   background-color: rgba(var(--danger-rgb), 0.2);
+}
+
+[data-theme="dark"] .fstt-form input,
+[data-theme="dark"] .fstt-form textarea,
+[data-theme="dark"] .fstt-form select {
+  background-color: var(--bg-primary);
+  border-color: var(--border-color);
 }

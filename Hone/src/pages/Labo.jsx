@@ -25,6 +25,17 @@ const Labo = () => {
   const [currentProject, setCurrentProject] = useState(null);
   const [currentTimeSlot, setCurrentTimeSlot] = useState(null);
   
+  // Add new state for form data
+  const [projectForm, setProjectForm] = useState({
+    name: '',
+    description: '',
+    status: 'ongoing',
+    startDate: '',
+    endDate: '',
+    participants: ''
+  });
+  const [formErrors, setFormErrors] = useState({});
+  
   useEffect(() => {
     // Check if user is Chef de Labo
     setIsChefLabo(hasRole(ROLES.CHEF_LABO));
@@ -33,6 +44,31 @@ const Labo = () => {
     fetchProjects();
     fetchTimeSlots();
   }, [hasRole, ROLES.CHEF_LABO]);
+  
+  useEffect(() => {
+    // Update form when currentProject changes (for editing)
+    if (currentProject) {
+      setProjectForm({
+        name: currentProject.name,
+        description: currentProject.description,
+        status: currentProject.status,
+        startDate: currentProject.startDate,
+        endDate: currentProject.endDate,
+        participants: currentProject.participants.join(', ')
+      });
+    } else {
+      // Reset form for new project
+      setProjectForm({
+        name: '',
+        description: '',
+        status: 'ongoing',
+        startDate: new Date().toISOString().split('T')[0],
+        endDate: '',
+        participants: ''
+      });
+    }
+    setFormErrors({});
+  }, [currentProject]);
   
   const fetchProjects = () => {
     // Mock data for projects
@@ -97,6 +133,75 @@ const Labo = () => {
   
   const handleManageMaterials = () => {
     setShowMaterialModal(true);
+  };
+  
+  const handleProjectFormChange = (e) => {
+    const { name, value } = e.target;
+    setProjectForm({
+      ...projectForm,
+      [name]: value
+    });
+    // Clear error for this field when user edits it
+    if (formErrors[name]) {
+      setFormErrors({
+        ...formErrors,
+        [name]: null
+      });
+    }
+  };
+
+  const validateProjectForm = () => {
+    const errors = {};
+    if (!projectForm.name.trim()) errors.name = t('validation.required', 'Ce champ est obligatoire');
+    if (!projectForm.description.trim()) errors.description = t('validation.required', 'Ce champ est obligatoire');
+    if (!projectForm.startDate) errors.startDate = t('validation.required', 'Ce champ est obligatoire');
+    
+    // If end date is provided, make sure it's after start date
+    if (projectForm.endDate && new Date(projectForm.endDate) < new Date(projectForm.startDate)) {
+      errors.endDate = t('validation.endDateAfterStart', 'La date de fin doit être après la date de début');
+    }
+    
+    return errors;
+  };
+
+  const handleProjectSubmit = (e) => {
+    e.preventDefault();
+    
+    const errors = validateProjectForm();
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+    
+    // Prepare project data
+    const projectData = {
+      name: projectForm.name,
+      description: projectForm.description,
+      status: projectForm.status,
+      startDate: projectForm.startDate,
+      endDate: projectForm.endDate || null,
+      participants: projectForm.participants.split(',').map(p => p.trim()).filter(p => p)
+    };
+    
+    if (currentProject) {
+      // Update existing project
+      const updatedProjects = projects.map(project => 
+        project.id === currentProject.id 
+          ? { ...project, ...projectData } 
+          : project
+      );
+      setProjects(updatedProjects);
+    } else {
+      // Create new project
+      const newProject = {
+        id: Date.now(), // Simple ID generation for demo
+        ...projectData
+      };
+      setProjects([...projects, newProject]);
+    }
+    
+    // Close modal
+    setShowProjectModal(false);
   };
   
   const filteredProjects = projectFilter === 'all' 
@@ -306,7 +411,119 @@ const Labo = () => {
         </div>
       </div>
       
-      {/* Modals would be implemented here */}
+      {/* Project Modal */}
+      {showProjectModal && (
+        <div className="fstt-modal-overlay" onClick={() => setShowProjectModal(false)}>
+          <div className="fstt-modal-container" onClick={e => e.stopPropagation()}>
+            <div className="fstt-modal-header">
+              <h3>{currentProject ? t('labo.editProject', 'Modifier le projet') : t('labo.newProject', 'Nouveau projet')}</h3>
+              <button 
+                className="fstt-modal-close" 
+                onClick={() => setShowProjectModal(false)}
+                aria-label="Close"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+            
+            <form onSubmit={handleProjectSubmit} className="fstt-form">
+              <div className="fstt-form-group">
+                <label htmlFor="name">{t('labo.projectName', 'Nom du projet')}</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  value={projectForm.name} 
+                  onChange={handleProjectFormChange}
+                  className={formErrors.name ? 'fstt-input-error' : ''}
+                />
+                {formErrors.name && <div className="fstt-error-message">{formErrors.name}</div>}
+              </div>
+              
+              <div className="fstt-form-group">
+                <label htmlFor="description">{t('labo.projectDescription', 'Description')}</label>
+                <textarea 
+                  id="description" 
+                  name="description" 
+                  value={projectForm.description} 
+                  onChange={handleProjectFormChange}
+                  rows="3"
+                  className={formErrors.description ? 'fstt-input-error' : ''}
+                ></textarea>
+                {formErrors.description && <div className="fstt-error-message">{formErrors.description}</div>}
+              </div>
+              
+              <div className="fstt-form-group">
+                <label htmlFor="status">{t('labo.status', 'Statut')}</label>
+                <select 
+                  id="status" 
+                  name="status" 
+                  value={projectForm.status} 
+                  onChange={handleProjectFormChange}
+                >
+                  <option value="ongoing">{t('labo.status.ongoing', 'En cours')}</option>
+                  <option value="finished">{t('labo.status.finished', 'Terminé')}</option>
+                  <option value="dropped">{t('labo.status.dropped', 'Abandonné')}</option>
+                </select>
+              </div>
+              
+              <div className="fstt-form-row">
+                <div className="fstt-form-group">
+                  <label htmlFor="startDate">{t('labo.startDate', 'Date de début')}</label>
+                  <input 
+                    type="date" 
+                    id="startDate" 
+                    name="startDate" 
+                    value={projectForm.startDate} 
+                    onChange={handleProjectFormChange}
+                    className={formErrors.startDate ? 'fstt-input-error' : ''}
+                  />
+                  {formErrors.startDate && <div className="fstt-error-message">{formErrors.startDate}</div>}
+                </div>
+                
+                <div className="fstt-form-group">
+                  <label htmlFor="endDate">{t('labo.endDate', 'Date de fin')}</label>
+                  <input 
+                    type="date" 
+                    id="endDate" 
+                    name="endDate" 
+                    value={projectForm.endDate} 
+                    onChange={handleProjectFormChange}
+                    className={formErrors.endDate ? 'fstt-input-error' : ''}
+                  />
+                  {formErrors.endDate && <div className="fstt-error-message">{formErrors.endDate}</div>}
+                </div>
+              </div>
+              
+              <div className="fstt-form-group">
+                <label htmlFor="participants">{t('labo.participants', 'Participants')} ({t('labo.separateWithCommas', 'séparer par des virgules')})</label>
+                <input 
+                  type="text" 
+                  id="participants" 
+                  name="participants" 
+                  value={projectForm.participants} 
+                  onChange={handleProjectFormChange}
+                  placeholder="John Doe, Jane Smith, ..."
+                />
+              </div>
+              
+              <div className="fstt-form-actions">
+                <button type="button" className="fstt-btn" onClick={() => setShowProjectModal(false)}>
+                  {t('common.cancel', 'Annuler')}
+                </button>
+                <button type="submit" className="fstt-btn fstt-btn-primary">
+                  {currentProject ? t('common.save', 'Enregistrer') : t('common.create', 'Créer')}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+      
+      {/* Other modals would be implemented here */}
     </div>
   );
 };
